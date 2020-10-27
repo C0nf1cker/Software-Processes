@@ -29,5 +29,9 @@ public class MainActivity extends AppCompatActivity {
         Intent ranking = new Intent(this, Ranking.class);
         startActivity(ranking);
     }
+    public void Exit(View view){
+        finish();
+        System.exit(0);
+    }
 
 }
