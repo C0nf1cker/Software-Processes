@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
             etCodigo.setText("");
             etDescripcion.setText("");
             etPrecio.setText("");
+            Toast.makeText(this, "Producto registrado", Toast.LENGTH_LONG);
         }else{
             Toast.makeText(this, "Falta rellenar algun campo", Toast.LENGTH_LONG);
         }
