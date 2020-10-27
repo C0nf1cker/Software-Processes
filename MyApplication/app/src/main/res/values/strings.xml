@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="starting_screen">PANTALLA INICIO</string>
+    <string name="button_play">Jugar</string>
+    <string name="playing_screen">PANTALLA JUEGO</string>
+    <string name="button_return">volver a inicio</string>
+    <string name="button_profile">Perfil</string>
+    <string name="profile_screen">PANTALLA PERFIL</string>
+    <string name="settings_screen">PANTALLA AJUSTES</string>
+    <string name="button_settings">Ajustes</string>
+    <string name="button_ranking">ranking</string>
+    <string name="button_exit">Salir</string>
+    <string name="ranking_screen">PANTALLA RANKING</string>
+</resources>
