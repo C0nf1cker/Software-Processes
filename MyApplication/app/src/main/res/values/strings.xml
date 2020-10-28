@@ -11,4 +11,6 @@
     <string name="button_ranking">ranking</string>
     <string name="button_exit">Salir</string>
     <string name="ranking_screen">PANTALLA RANKING</string>
+    <string name="button_message">Mensaje</string>
+    <string name="message_screen">PANTALLA MENSAJE</string>
 </resources>

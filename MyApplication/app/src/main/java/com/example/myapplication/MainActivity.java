@@ -33,5 +33,10 @@ public class MainActivity extends AppCompatActivity {
         finish();
         System.exit(0);
     }
+    public void Message(View view){
+        Intent message = new Intent(this, Message.class);
+        startActivity(message);
+
+    }
 
 }
