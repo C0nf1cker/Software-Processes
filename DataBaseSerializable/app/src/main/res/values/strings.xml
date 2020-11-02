@@ -8,6 +8,7 @@
     <string name="buttonGoBack3">Volver</string>
     <string name="txtMessage">Aqui se mostrara su mensaje</string>
     <string name="buttonShow">Mostrar</string>
+    <string name="buttonAdd">Guardar</string>
     <string name="txtName">Nombre</string>
     <string name="txtSurname">Apellidos</string>
     <string name="txtEmail">Correo electronico</string>

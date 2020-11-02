@@ -26,7 +26,7 @@ public class DataBaseSystem implements Serializable {
     private LinkedList<Message> messagesList;
 
 
-    //constructor que crea las instancias de las listas de usuarios y subforos que almacena el sistema
+    //Constructor que crea las instancias de las listas de usuarios y mensajes que almacena el sistema
     private DataBaseSystem() {
         usersList= new LinkedList<>();
         messagesList = new LinkedList<>();
@@ -36,8 +36,8 @@ public class DataBaseSystem implements Serializable {
         return messagesList;
     }
 
-    //método que carga los datos del sistema en caso de que ya haya uno creado, y en caso contrario crea
-    //una instancia nueva
+    //Método que carga los datos del sistema en caso de que ya haya uno creado,
+    //y en caso contrario crea una instancia nueva
     public static  DataBaseSystem getInstancia(){
         if(instancia==null){
             File f = new File("BaseDeDatos.obj");
@@ -50,8 +50,6 @@ public class DataBaseSystem implements Serializable {
         return instancia;
     }
 
-    //método que de estar registrado el usuario y no penalizado, pone el atributo usuarioConectado a este
-    //además le mostrará todas las notificaciones nuevas; en caso contrario no le permitirá iniciar sesión
     public User login(String email, String password) {
         for (User u:usersList) {
             if ((u.getEmail().equals(email)) && (u.getPassword().equals(password))) {
@@ -61,29 +59,33 @@ public class DataBaseSystem implements Serializable {
         return null;
     }
 
-    //método que permite crear un objeto alumno, administrador o profesor dependiendo de los datos que se le pasen,
-    //además añadirá este usuario a la lista de usuarios del sistema
     public boolean addUser(String name, String surname, String email, String password){
         User u = new User(name, surname, email, password);
         usersList.add(u);
         return true;
     }
 
-    //get que nos devuelve la lista de usuarios del sistema
-
-
     public LinkedList<User> getUsersList() {
         return usersList;
     }
 
-    //método que permite crear un objeto subforo, además añadirá este subforo a la lista de subforos del sistema
-    public boolean addMessage(int id, String description){
+    public boolean addMessage(String description){
+        int id = messagesList.size();
         Message m = new Message(id, description);
         messagesList.add(m);
         return true;
     }
 
-    //método que carga toda la información de un fichero llamado BaseDeDatos.obj al objeto sistema
+    public String getMessage(){
+        if (messagesList.size()==0){
+            return "No hay mensajes disponibles";
+        }else {
+            int position = (int) Math.floor(Math.random() * messagesList.size());
+            Message m = messagesList.get(position);
+            return m.getDescription();
+        }
+    }
+
     public static DataBaseSystem load(){
         DataBaseSystem db = null;
         try {
@@ -99,7 +101,6 @@ public class DataBaseSystem implements Serializable {
         return db;
     }
 
-    //método que guarda en un fichero llamado BaseDeDatos.obj toda la información que almacena la instancia del sistema
     public boolean save(Context ctx){
         try {
             FileOutputStream f = ctx.openFileOutput("BaseDeDatos.obj", Context.MODE_PRIVATE);
@@ -112,8 +113,6 @@ public class DataBaseSystem implements Serializable {
             System.out.println(e.getMessage());
             return false;
         }
-
-
     }
 
 }

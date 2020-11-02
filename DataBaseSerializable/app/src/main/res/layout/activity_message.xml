@@ -38,6 +38,7 @@
         android:id="@+id/buttonShow"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
+        android:onClick="showMessage"
         android:text="@string/buttonShow"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/buttonGoBack3"
@@ -45,4 +46,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtMessage"
         app:layout_constraintVertical_bias="0.39" />
+
+    <Button
+        android:id="@+id/buttonAdd"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:onClick="addMessage"
+        android:text="@string/buttonAdd"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGoBack3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonShow" />
 </androidx.constraintlayout.widget.ConstraintLayout>

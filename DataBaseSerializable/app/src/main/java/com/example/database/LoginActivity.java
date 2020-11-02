@@ -37,7 +37,13 @@ public class LoginActivity extends AppCompatActivity {
         String password = etPassword.getText().toString();
         if (check(email, password)){
             User u = db.login(email, password);
-            Toast.makeText(this, u.getName(), Toast.LENGTH_LONG).show();
+            if (u == null){
+                Toast.makeText(this, "Usuario no encontrado", Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(this, "Bienvenido " + u.getName(), Toast.LENGTH_LONG).show();
+            }
         }
+        etEmail.setText("");
+        etPassword.setText("");
     }
 }

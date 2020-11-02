@@ -10,4 +10,8 @@ public class Message implements Serializable {
         this.id = id;
         this.description = description;
     }
+
+    public String getDescription() {
+        return description;
+    }
 }

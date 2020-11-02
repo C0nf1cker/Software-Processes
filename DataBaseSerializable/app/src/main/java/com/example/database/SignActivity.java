@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class SignActivity extends AppCompatActivity {
 
@@ -48,6 +49,15 @@ public class SignActivity extends AppCompatActivity {
         if (check(name, surname, email, password, confirmPassword)){
             db.addUser(name, surname, email, password);
             db.save(this);
+            Toast.makeText(this, "Usuario registrado correctamente", Toast.LENGTH_LONG).show();
         }
+        else{
+            Toast.makeText(this, "Error en el registro", Toast.LENGTH_LONG).show();
+        }
+        etName.setText("");
+        etSurname.setText("");
+        etEmail.setText("");
+        etPassword.setText("");
+        etConfirmPassword.setText("");
     }
 }
