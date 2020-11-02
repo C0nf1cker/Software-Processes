@@ -115,4 +115,41 @@ public class DataBaseSystem implements Serializable {
         }
     }
 
+    public LinkedList<User> copyUserList(){
+        LinkedList<User> listAux = this.usersList;
+        for(User u: this.usersList){
+            listAux.add(u);
+        }
+        return listAux;
+    }
+
+    public User getBestPlayer(LinkedList<User> list){
+        LinkedList<User> listAux = this.usersList;
+        User bestUser = null;
+        int bestScore = -1;
+        for(User u: this.usersList){
+            int score = u.getScore();
+            if (score>bestScore){
+                bestUser = u;
+                bestScore = score;
+            }
+        }
+        return bestUser;
+    }
+
+    public LinkedList<User> getBestPlayers(int numPlayers){
+        if (usersList.size()<numPlayers){
+            return null;
+        }else{
+            LinkedList<User> listPlayers = new LinkedList<>();
+            LinkedList<User> listAux = this.usersList;
+            for (int i=0;i<numPlayers;i++){
+                User best = this.getBestPlayer(listAux);
+                listAux.remove(best);
+                listPlayers.add(best);
+            }
+            return listAux;
+        }
+    }
+
 }

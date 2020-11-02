@@ -6,6 +6,7 @@
     <string name="buttonGoBack1">Volver</string>
     <string name="buttonGoBack2">Volver</string>
     <string name="buttonGoBack3">Volver</string>
+    <string name="buttonGoBack4">Volver</string>
     <string name="txtMessage">Aqui se mostrara su mensaje</string>
     <string name="buttonShow">Mostrar</string>
     <string name="buttonAdd">Guardar</string>
@@ -18,4 +19,7 @@
     <string name="buttonDoLogin">Iniciar sesion</string>
     <string name="txtLoginEmail">Correo electronico</string>
     <string name="txtLoginPassword">Contraseña</string>
+    <string name="buttonShowRanking">Mostrar</string>
+    <string name="txtRanking">Aqui se mostrara el TOP 10</string>
+    <string name="buttonRanking">Ranking</string>
 </resources>
