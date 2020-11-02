@@ -36,13 +36,13 @@ public class Juego extends AppCompatActivity {
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int width = displaymetrics.widthPixels;
-        int height = displaymetrics.heightPixels;
+        int width = displaymetrics.widthPixels-200;
+        int height = displaymetrics.heightPixels-500;
 
 
         Random r = new Random();
 
-        absParams.x =  r.nextInt(width ) ;
+        absParams.x =  r.nextInt(width );
         absParams.y =  r.nextInt(height );
         button.setLayoutParams(absParams);
 
@@ -81,13 +81,13 @@ public class Juego extends AppCompatActivity {
 
         DisplayMetrics displaymetrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int width = displaymetrics.widthPixels;
-        int height = displaymetrics.heightPixels;
+        int width = displaymetrics.widthPixels-200;
+        int height = displaymetrics.heightPixels-500;
 
 
         Random r = new Random();
 
-        absParams.x =  r.nextInt(width ) ;
+        absParams.x =  r.nextInt(width );
         absParams.y =  r.nextInt(height );
         button.setLayoutParams(absParams);
         //necesario para mostrar la puntuación síncrona a tiempo real en la casilla textView counterValue
