@@ -1,6 +1,8 @@
 package com.example.database;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -45,7 +47,7 @@ public class SignActivity extends AppCompatActivity {
         String confirmPassword = etConfirmPassword.getText().toString();
         if (check(name, surname, email, password, confirmPassword)){
             db.addUser(name, surname, email, password);
-            db.save();
+            db.save(this);
         }
     }
 }

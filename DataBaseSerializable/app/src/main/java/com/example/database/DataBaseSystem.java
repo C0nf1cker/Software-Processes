@@ -100,9 +100,9 @@ public class DataBaseSystem implements Serializable {
     }
 
     //método que guarda en un fichero llamado BaseDeDatos.obj toda la información que almacena la instancia del sistema
-    public boolean save(){
+    public boolean save(Context ctx){
         try {
-            FileOutputStream f = new FileOutputStream("BaseDeDatos.obj");
+            FileOutputStream f = ctx.openFileOutput("BaseDeDatos.obj", Context.MODE_PRIVATE);
             ObjectOutputStream finalFile = new ObjectOutputStream(f);
             finalFile.writeObject(this);
             finalFile.close();
