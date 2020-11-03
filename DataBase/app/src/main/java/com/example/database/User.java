@@ -1,10 +1,10 @@
 package com.example.database;
 
 public class User {
-    private String email,name,surname,password;
+    private String email, name, surname, password;
     private int score;
 
-    public User(String email, String name, String surname, String password,int score) {
+    public User(String email, String name, String surname, String password, int score) {
         this.email = email;
         this.name = name;
         this.surname = surname;
