@@ -10,15 +10,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class LoginActivity extends AppCompatActivity {
-    private DataBase ddbb;
+    private UsersDataBase ddbb;
     private EditText etEmail, etPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ddbb = new DataBase();
-        ddbb.loadUsers();
-        ddbb.loadMessages();
+        ddbb = new UsersDataBase(this);
         setContentView(R.layout.activity_login);
         etEmail = (EditText) findViewById(R.id.txtLoginEmail);
         etPassword = (EditText) findViewById(R.id.txtLoginPassword);
@@ -33,12 +31,11 @@ public class LoginActivity extends AppCompatActivity {
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
         if(comprobarCampos(email,password)){
-            User u = ddbb.loadUser(email);
-            Toast.makeText(this, "Usuario encontrado.", Toast.LENGTH_LONG).show();
-            if(u.getPassword().equals(password))
+            User u = ddbb.logIn(email,password);
+            if(u!=null)
                 Toast.makeText(this, "Usuario loggeado.", Toast.LENGTH_LONG).show();
             else
-                Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Contraseña  incorrecta", Toast.LENGTH_LONG).show();
         }else
             Toast.makeText(this, "Campos solicictados vacios.", Toast.LENGTH_LONG).show();
     }

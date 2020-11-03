@@ -8,16 +8,18 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class SignActivity extends AppCompatActivity {
-    private DataBase ddbb;
+    private UsersDataBase ddbb;
     private EditText etName,etSurname,etEmail,etPassword,etConfirmPassword;
+    private User currentUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ddbb = new DataBase();
-        ddbb.loadUsers();
-        ddbb.loadMessages();
         setContentView(R.layout.activity_sign);
+        //Inicializamos nuestra BBDD de usuarios
+        ddbb = new UsersDataBase(this);
+
+        //Inicializacion de elementos de la interdaz
         etEmail = (EditText) findViewById(R.id.txtEmail);
         etPassword = (EditText) findViewById(R.id.txtPassword);
         etConfirmPassword = (EditText) findViewById(R.id.txtConfirmPassword);
@@ -37,14 +39,13 @@ public class SignActivity extends AppCompatActivity {
         String name = etName.getText().toString();
         String surname = etSurname.getText().toString();
         if(comprobarCampos(email,password,confirmPassword,name,surname)){
-            User newUser = new User(name,surname,email,password);
-            if(ddbb.saveUser(newUser)){
-                ddbb.saveUsers();
-                Toast.makeText(this, "Usuario registrado correctamente.", Toast.LENGTH_LONG).show();
-            }else{
-                Toast.makeText(this, "Usuario ya registrado.", Toast.LENGTH_LONG).show();
-            }
+            boolean correctSignIn = ddbb.sigIn(email,name,surname,password);
+            if(correctSignIn)
+                Toast.makeText(this,"Usuario registrado correctamente.",Toast.LENGTH_LONG).show();
+            else
+                Toast.makeText(this,"Nombre de usuario ya registrado anteriormente.",Toast.LENGTH_LONG).show();
         }
+        Toast.makeText(this,"Falta algun campo del registro por rellenar.",Toast.LENGTH_LONG).show();
     }
 
     private boolean comprobarCampos(String email, String password, String confirmPassword, String name, String surname) {

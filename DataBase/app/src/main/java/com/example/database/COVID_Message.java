@@ -1,13 +1,12 @@
 package com.example.database;
 
-public class Message {
+public class COVID_Message {
     private int id;
-    private String text,tittle;
+    private String text;
 
-    public Message(int id, String text, String tittle) {
+    public COVID_Message(int id, String text) {
         this.id = id;
         this.text = text;
-        this.tittle = tittle;
     }
 
     public int getId() {
@@ -24,13 +23,5 @@ public class Message {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public String getTittle() {
-        return tittle;
-    }
-
-    public void setTittle(String tittle) {
-        this.tittle = tittle;
     }
 }

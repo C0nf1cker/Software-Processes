@@ -1,15 +1,21 @@
 package com.example.database;
 
 public class User {
-    private String name,surname,mail,password;
-    private int score;
+    private String email,name,surname,password;
 
-    public User(String name, String surname, String mail, String password) {
+    public User(String email, String name, String surname, String password) {
+        this.email = email;
         this.name = name;
         this.surname = surname;
-        this.mail = mail;
         this.password = password;
-        score = 0;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getName() {
@@ -28,27 +34,11 @@ public class User {
         this.surname = surname;
     }
 
-    public String getMail() {
-        return mail;
-    }
-
-    public void setMail(String mail) {
-        this.mail = mail;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
     }
 }
