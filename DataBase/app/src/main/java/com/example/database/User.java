@@ -2,12 +2,14 @@ package com.example.database;
 
 public class User {
     private String email,name,surname,password;
+    private int score;
 
-    public User(String email, String name, String surname, String password) {
+    public User(String email, String name, String surname, String password,int score) {
         this.email = email;
         this.name = name;
         this.surname = surname;
         this.password = password;
+        this.score = score;
     }
 
     public String getEmail() {
@@ -40,5 +42,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }

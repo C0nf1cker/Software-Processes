@@ -7,8 +7,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 public class LoginActivity extends AppCompatActivity {
     private UsersDataBase ddbb;
     private EditText etEmail, etPassword;
@@ -27,10 +25,16 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+
+    /**
+     * Metodo que coge los datos introducidos por el usuario en los campos correspondientes
+     * y lo busca en la base de datos llamando al logIn de esta
+     * @param view
+     */
     public void logIn(View view){
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
-        if(comprobarCampos(email,password)){
+        if(checkFields(email,password)){
             User u = ddbb.logIn(email,password);
             if(u!=null)
                 Toast.makeText(this, "Usuario loggeado.", Toast.LENGTH_LONG).show();
@@ -40,7 +44,13 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(this, "Campos solicictados vacios.", Toast.LENGTH_LONG).show();
     }
 
-    private boolean comprobarCampos(String email, String password) {
+    /**
+     * Metodo auxiliar usado para comprobar que los campos email y password no estan vacios
+     * @param email
+     * @param password
+     * @return true en caso de que no esten vacios y false si lo estan
+     */
+    private boolean checkFields(String email, String password) {
         if(email.isEmpty()||password.isEmpty())
             return false;
         return true;

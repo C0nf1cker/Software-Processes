@@ -32,6 +32,10 @@ public class SignActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    /**Metodo para registrar un nuevo usuario, comprobando que los campos han sido rellenados
+     * correctamente y llamando al metodo registrarse de la base de datos de usuarios.
+     * @param view
+     */
     public void sigIn(View view){
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
@@ -48,6 +52,14 @@ public class SignActivity extends AppCompatActivity {
         Toast.makeText(this,"Falta algun campo del registro por rellenar.",Toast.LENGTH_LONG).show();
     }
 
+    /**Método auxiliar para comprobar que los campos para el registro de usuarios no esten vacios
+     * @param email
+     * @param password
+     * @param confirmPassword
+     * @param name
+     * @param surname
+     * @return true en caso de que los campos esten correctamente sino devuelve false
+     */
     private boolean comprobarCampos(String email, String password, String confirmPassword, String name, String surname) {
         if(email.isEmpty()||password.isEmpty()||confirmPassword.isEmpty()||name.isEmpty()||surname.isEmpty())
             return false;

@@ -17,4 +17,5 @@
     <string name="buttonDoLogin">Iniciar sesion</string>
     <string name="txtLoginEmail">Correo electronico</string>
     <string name="txtLoginPassword">Contraseña</string>
+    <string name="guardar">Guardar</string>
 </resources>

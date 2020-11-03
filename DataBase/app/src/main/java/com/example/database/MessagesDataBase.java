@@ -37,7 +37,11 @@ public class MessagesDataBase extends SQLiteOpenHelper {
 
     }
 
-    //Metodo para insertar un nuevo mensaje en la BBDD
+
+    /**Inserta en la base de datos un nuevo mensaje con el texto pasado por argumento
+     * @param text el texto del nuevo mensaje a introducir.
+     * @return false en caso de fallo en la inserción y true en caso de exito
+     */
     public boolean insert(String text){
         ContentValues cv = new ContentValues();
         cv.put("text",text);
@@ -46,9 +50,15 @@ public class MessagesDataBase extends SQLiteOpenHelper {
         return true;
     }
 
-    //Metodo para obtener un mensaje al azar de la BBDD
+
+    /**Metodo para extraer un mensaje aleatorio de la base de datos de mensajes
+     * @return null en caso de que la base de datos esté vacia o un mensaje aleatorio
+     * previamente guardado
+     */
     public COVID_Message getMessage(){
         COVID_Message message = null;
+
+        //Sentencia SQL para coger un mensaje aleatorio de la BBDD
         Cursor c = db.rawQuery("SELECT _id, text from messages ORDER BY RANDOM() LIMIT 1",null);
         if(c.moveToFirst()){
             String text = c.getString(c.getColumnIndex("text"));
