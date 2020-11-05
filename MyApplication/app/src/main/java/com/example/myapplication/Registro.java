@@ -14,7 +14,7 @@ import org.json.JSONObject;
 
 public class Registro extends Activity {
 
-    private TextView lblGotoLogin;
+    /*private TextView lblGotoLogin;
     private Button btnRegister;
     private EditText inputFullName;
     private EditText inputEmail;
@@ -56,5 +56,5 @@ public class Registro extends Activity {
             }
         });
 
-    }
+    }*/
 }

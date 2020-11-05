@@ -65,7 +65,7 @@ public class Message extends AppCompatActivity {
             }
         };
         t.start();
-        Intent main = new Intent(this, Juego.class);
+        Intent main = new Intent(this, Game.class);
         startActivity(main);
 
     }
