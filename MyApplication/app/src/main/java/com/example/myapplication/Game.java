@@ -14,14 +14,14 @@ import android.widget.Toast;
 
 import java.util.Random;
 
-public class Juego extends AppCompatActivity {
+public class Game extends AppCompatActivity {
     //showValue es el textview correspondiente a la puntuación que me va a ir variando en función de los clicks dados al círculo
     TextView showValue;
     // el counter es el contador de los clicks dados al círculo necesarios para contar la puntuación
-    int counter =0;
+    public int counter =0;
     //necesitamos unbooleano pressed para saber si se ha presionado en una partida el círculo ya que,
     //en caso de que si, no cuente como puntuación múltiples clicks sobre el mismo círculo del mismo nivel, sería ilógico
-    boolean pressed=false;
+    public boolean pressed=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

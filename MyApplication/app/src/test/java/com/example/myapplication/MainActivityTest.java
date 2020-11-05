@@ -7,7 +7,7 @@ import junit.framework.TestCase;
 public class MainActivityTest extends TestCase {
 
     public void testPlay() {
-        //Intent play = launchActivity<Juego>();
+        //Intent play = launchActivity<Game>();
 
     }
 
