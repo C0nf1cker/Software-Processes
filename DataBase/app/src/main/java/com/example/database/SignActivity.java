@@ -51,8 +51,9 @@ public class SignActivity extends AppCompatActivity {
                 Toast.makeText(this, "Usuario registrado correctamente.", Toast.LENGTH_LONG).show();
             else
                 Toast.makeText(this, "Nombre de usuario ya registrado anteriormente.", Toast.LENGTH_LONG).show();
+        }else {
+            Toast.makeText(this, "Falta algun campo del registro por rellenar.", Toast.LENGTH_LONG).show();
         }
-        Toast.makeText(this, "Falta algun campo del registro por rellenar.", Toast.LENGTH_LONG).show();
     }
 
     /**
