@@ -84,4 +84,20 @@ public class UsersDataBase extends SQLiteOpenHelper {
         }
         return user;
     }
+
+    /**Metodo para actualizar la puntuacion de un usuario cuando gana una partida
+     * @param email del usuario
+     * @param score nueva a actualizar
+     * @return false si no existe el usuario y true si existe y se ha actualizado con exito
+     */
+    public boolean updateScore(String email,int score){
+        Cursor c = db.rawQuery("SELECT _email, name, surname, password FROM users WHERE _email=?", new String[]{email});
+        if(!c.moveToFirst())
+            return false;
+        ContentValues cv = new ContentValues();
+        cv.put("score",score);
+        db.update("users", cv, "email=?", new String[]{email});
+        return true;
+    }
+
 }
