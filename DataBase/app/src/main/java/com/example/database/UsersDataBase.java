@@ -15,7 +15,7 @@ public class UsersDataBase extends SQLiteOpenHelper {
 
     //Sentencia de creacion de la tabla de usuarios
     private static final String USERS_TABLE_CREATE
-            = "CREATE TABLE users(_email TEXT PRIMARY KEY, name TEXT, surname TEXT, password TEXT, score INTEGER)";
+            = "CREATE TABLE users(_email TEXT PRIMARY KEY, name TEXT, surname TEXT, password TEXT, score TEXT)";
 
     //Nombre de la BBDD de usuarios
     private static final String DB_USERS_NAME = "users.sqlite";
@@ -53,7 +53,7 @@ public class UsersDataBase extends SQLiteOpenHelper {
         if (c.moveToFirst())
             return false;
         ContentValues cv = new ContentValues();
-        int score = 0;
+        String score = "0";
         cv.put("_email", email);
         cv.put("name", name);
         cv.put("surname", surname);
@@ -80,7 +80,7 @@ public class UsersDataBase extends SQLiteOpenHelper {
                     uSurname = c.getString(c.getColumnIndex("surname")),
                     uEmail = c.getString(c.getColumnIndex("_email")),
                     uPassword = c.getString(c.getColumnIndex("password"));
-            int uScore = c.getInt(c.getColumnIndex("score"));
+            int uScore = Integer.parseInt(c.getString(c.getColumnIndex("score")));
             user = new User(uEmail, uName, uSurname, uPassword, uScore);
         }
         return user;
@@ -96,7 +96,7 @@ public class UsersDataBase extends SQLiteOpenHelper {
         if(!c.moveToFirst())
             return false;
         ContentValues cv = new ContentValues();
-        cv.put("score",score);
+        cv.put("score",String.valueOf(score));
         db.update("users", cv, "email=?", new String[]{email});
         return true;
     }
