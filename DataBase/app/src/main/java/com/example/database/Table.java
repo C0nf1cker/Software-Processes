@@ -46,7 +46,7 @@ public class Table extends AppCompatActivity {
      * Metodo para cargar la info de los jugadores y mostrarla en la tabla
      */
     public void rank() {
-        Cursor c = db.rawQuery("SELECT name, score FROM users", null);
+        Cursor c = db.rawQuery("SELECT name, score, surname, _email, password FROM users", null);
         User userAux;
         String name, surname, email, password;
         int score;
@@ -54,7 +54,7 @@ public class Table extends AppCompatActivity {
             do {
                 name = c.getString(c.getColumnIndex("name"));
                 surname = c.getString(c.getColumnIndex("surname"));
-                email = c.getString(c.getColumnIndex("email"));
+                email = c.getString(c.getColumnIndex("_email"));
                 password = c.getString(c.getColumnIndex("password"));
                 score = c.getInt(c.getColumnIndex("score"));
                 userAux = new User(email, name, surname, password, score);
