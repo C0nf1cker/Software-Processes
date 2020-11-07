@@ -53,11 +53,12 @@ public class UsersDataBase extends SQLiteOpenHelper {
         if (c.moveToFirst())
             return false;
         ContentValues cv = new ContentValues();
+        int score = 0;
         cv.put("_email", email);
         cv.put("name", name);
         cv.put("surname", surname);
         cv.put("password", password);
-        cv.put("score", 0);
+        cv.put("score", score);
         db.insert("users", null, cv);
         return true;
     }
