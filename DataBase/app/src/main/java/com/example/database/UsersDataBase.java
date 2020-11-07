@@ -101,4 +101,8 @@ public class UsersDataBase extends SQLiteOpenHelper {
         return true;
     }
 
+    public Cursor getAllUsers() {
+        return db.rawQuery("SELECT _email, name, surname, password, score FROM users",null);
+    }
+
 }

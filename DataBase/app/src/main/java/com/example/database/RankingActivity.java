@@ -14,7 +14,6 @@ import java.util.LinkedList;
 
 public class RankingActivity extends AppCompatActivity {
     private UsersDataBase BBDD;
-    private SQLiteDatabase db;
     private ListView dynamic;
     private LinkedList<User> users = new LinkedList<>();
     private LinkedList<String> infoToShow = new LinkedList<>();
@@ -45,7 +44,7 @@ public class RankingActivity extends AppCompatActivity {
      * Metodo para cargar la info de los jugadores y mostrarla en la tabla
      */
     public void rank() {
-        Cursor c = db.rawQuery("SELECT name, score, surname, _email, password FROM users", null);
+        Cursor c = BBDD.getAllUsers();
         User userAux;
         String name, surname, email, password;
         int score;
