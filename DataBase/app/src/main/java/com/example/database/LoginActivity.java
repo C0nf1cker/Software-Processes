@@ -41,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
             if (u != null)
                 Toast.makeText(this, "Usuario loggeado.", Toast.LENGTH_LONG).show();
             else
-                Toast.makeText(this, "Contraseña  incorrecta", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Contraseña o usuarios incorrectos", Toast.LENGTH_LONG).show();
         } else
             Toast.makeText(this, "Campos solicictados vacios.", Toast.LENGTH_LONG).show();
     }
