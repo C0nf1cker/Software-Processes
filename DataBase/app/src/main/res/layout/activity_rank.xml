@@ -21,16 +21,30 @@
         app:layout_constraintStart_toStartOf="parent" />
 
 
-
     <ListView
-        android:id="@+id/ContentList"
-        android:layout_width="365dp"
-        android:layout_height="548dp"
+        android:id="@+id/rankList"
+        android:layout_width="346dp"
+        android:layout_height="460dp"
+        android:layout_marginTop="120dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonSearch"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.516" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="401dp"
+        android:layout_height="59dp"
+        android:text="@string/ranking_de_jugadores"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/rankList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.573" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
