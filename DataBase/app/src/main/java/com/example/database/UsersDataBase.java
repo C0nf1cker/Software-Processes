@@ -15,7 +15,7 @@ public class UsersDataBase extends SQLiteOpenHelper {
 
     //Sentencia de creacion de la tabla de usuarios
     private static final String USERS_TABLE_CREATE
-            = "CREATE TABLE users(_email TEXT PRIMARY KEY, name TEXT, surname TEXT, password TEXT, score TEXT)";
+            = "CREATE TABLE users(_email TEXT PRIMARY KEY, name TEXT, surname TEXT, password TEXT, score INTEGER)";
 
     //Nombre de la BBDD de usuarios
     private static final String DB_USERS_NAME = "users.sqlite";
@@ -74,7 +74,7 @@ public class UsersDataBase extends SQLiteOpenHelper {
     public User logIn(String email, String password) {
         User user = null;
         //Consulta en la BBDD si hay algun usuario con dicho email y contraseña
-        Cursor c = db.rawQuery("SELECT _email, name, surname, password FROM users WHERE _email=? AND password=?", new String[]{email, password});
+        Cursor c = db.rawQuery("SELECT _email, name, surname, password, score FROM users WHERE _email=? AND password=?", new String[]{email, password});
         if (c.moveToFirst()) {
             String uName = c.getString(c.getColumnIndex("name")),
                     uSurname = c.getString(c.getColumnIndex("surname")),
@@ -92,7 +92,7 @@ public class UsersDataBase extends SQLiteOpenHelper {
      * @return false si no existe el usuario y true si existe y se ha actualizado con exito
      */
     public boolean updateScore(String email,int score){
-        Cursor c = db.rawQuery("SELECT _email, name, surname, password FROM users WHERE _email=?", new String[]{email});
+        Cursor c = db.rawQuery("SELECT _email, name, surname, password, score FROM users WHERE _email=?", new String[]{email});
         if(!c.moveToFirst())
             return false;
         ContentValues cv = new ContentValues();

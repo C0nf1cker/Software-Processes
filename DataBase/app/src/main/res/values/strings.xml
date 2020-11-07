@@ -18,4 +18,7 @@
     <string name="txtLoginEmail">Correo electronico</string>
     <string name="txtLoginPassword">Contraseña</string>
     <string name="guardar">Guardar</string>
+    <string name="atras">Atras</string>
+    <string name="ranking_de_jugadores">Ranking de Jugadores</string>
+    <string name="ranking">RANKING</string>
 </resources>
