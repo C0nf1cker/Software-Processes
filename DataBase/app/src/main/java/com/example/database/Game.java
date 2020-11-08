@@ -48,16 +48,9 @@ public class Game extends AppCompatActivity {
         ddbb = new UsersDataBase(this);
         //Tomamos el email del usuario logeado que nos manda el menú
         currentUserEmail = getIntent().getStringExtra("userEmail");
-        //En caso de haber iniciado sesion iniciamos la puntuacion del juego a la score del usuario y sino a 0
-        if (currentUserEmail == null) {
-            counter = 0;
-            currentUser = null;
-        } else {
-            currentUser = ddbb.getUser(currentUserEmail);
-            counter = currentUser.getScore();
-        }
-        //innicializamos pressed a false
+        //innicializamos pressed a false y counter a 0
         pressed = false;
+        counter = 0;
         //coloca el círculo con id: button12 en posiciones aleatorias
         Button button = (Button) findViewById(R.id.button12);
         AbsoluteLayout.LayoutParams absParams =
@@ -84,8 +77,9 @@ public class Game extends AppCompatActivity {
     public void goMain(View view) {
         Intent main = new Intent(this, MainActivity.class);
         //Cuando salimos del juego y es un usuario loggeado tenemos que actualiar su puntuación
-        if (currentUser != null) {
-            ddbb.updateScore(currentUser.getEmail(), counter);
+        if (currentUserEmail != null) {
+            currentUser = ddbb.getUser(currentUserEmail);
+            ddbb.updateScore(currentUser.getEmail(), counter+currentUser.getScore());
         }
         //Devolvemos al menú el email del usuario logeado para que mantenga la sesión iniciada
         main.putExtra("userEmail", this.currentUserEmail);
