@@ -96,13 +96,26 @@ public class UsersDataBase extends SQLiteOpenHelper {
         if(!c.moveToFirst())
             return false;
         ContentValues cv = new ContentValues();
-        cv.put("score",String.valueOf(score));
-        db.update("users", cv, "email=?", new String[]{email});
+        cv.put("score",score);
+        db.update("users", cv, "_email=?", new String[]{email});
         return true;
     }
 
     public Cursor getAllUsers() {
         return db.rawQuery("SELECT _email, name, surname, password, score FROM users",null);
+    }
+
+    protected User getUser(String email){
+        User toReturn = null;
+        Cursor c = db.rawQuery("SELECT _email, name, surname, password, score FROM users WHERE _email=?",new String[]{email});
+        if(c.moveToFirst()){
+            String uName = c.getString(c.getColumnIndex("name")),
+                    uSurname = c.getString(c.getColumnIndex("surname")),
+                    uPassword = c.getString(c.getColumnIndex("password"));
+            int uScore = c.getInt(c.getColumnIndex("score"));
+            toReturn = new User(email,uName,uSurname,uPassword,uScore);
+        }
+        return toReturn;
     }
 
 }

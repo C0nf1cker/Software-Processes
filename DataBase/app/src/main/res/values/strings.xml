@@ -28,5 +28,6 @@
     <string name="buttonNext">Saltar</string>
     <string name="button_return">volver a inicio</string>
     <string name="button_play_again">volver a jugar</string>
+    <string name="score_text">Puntuación:</string>
 
 </resources>

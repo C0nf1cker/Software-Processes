@@ -13,6 +13,9 @@ import android.widget.ListView;
 import java.util.LinkedList;
 
 public class RankingActivity extends AppCompatActivity {
+
+    private String currentUserEmail;
+
     private UsersDataBase BBDD;
     private ListView dynamic;
     private LinkedList<User> users = new LinkedList<>();
@@ -24,6 +27,7 @@ public class RankingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
 
+        currentUserEmail = getIntent().getStringExtra("userEmail");
 
         //Inicializamos nuestra base de datos
         BBDD = new UsersDataBase(this);
@@ -37,6 +41,8 @@ public class RankingActivity extends AppCompatActivity {
     //Metodo para volver al menu principal
     public void goBack(View view) {
         Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("userEmail",this.currentUserEmail);
+        startActivity(i);
     }
 
 
@@ -91,9 +97,9 @@ public class RankingActivity extends AppCompatActivity {
         User aux;
 
         while (i < j) {                          // mientras no se crucen las búsquedas
-            while (A.get(i).getScore() <= pivote.getScore() && i < j)
+            while (A.get(i).getScore() >= pivote.getScore() && i < j)
                 i++; // busca elemento mayor que pivote
-            while (A.get(j).getScore() > pivote.getScore())
+            while (A.get(j).getScore() < pivote.getScore())
                 j--;           // busca elemento menor que pivote
             if (i < j) {                        // si no se han cruzado
                 aux = A.get(i);                      // los intercambia

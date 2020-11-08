@@ -9,18 +9,22 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class SignActivity extends AppCompatActivity {
+    private String currentUserEmail;
     private UsersDataBase ddbb;
     private EditText etName, etSurname, etEmail, etPassword, etConfirmPassword;
-    private User currentUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign);
+
+        currentUserEmail = getIntent().getStringExtra("userEmail");
+
         //Inicializamos nuestra BBDD de usuarios
         ddbb = new UsersDataBase(this);
 
-        //Inicializacion de elementos de la interdaz
+        //Inicializacion de elementos de la interfaz
         etEmail = (EditText) findViewById(R.id.txtEmail);
         etPassword = (EditText) findViewById(R.id.txtPassword);
         etConfirmPassword = (EditText) findViewById(R.id.txtConfirmPassword);
@@ -30,6 +34,7 @@ public class SignActivity extends AppCompatActivity {
 
     public void goBack(View view) {
         Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("userEmail",this.currentUserEmail);
         startActivity(i);
     }
 
@@ -46,11 +51,15 @@ public class SignActivity extends AppCompatActivity {
         String name = etName.getText().toString();
         String surname = etSurname.getText().toString();
         if (comprobarCampos(email, password, confirmPassword, name, surname)) {
-            boolean correctSignIn = ddbb.sigIn(email, name, surname, password);
-            if (correctSignIn)
-                Toast.makeText(this, "Usuario registrado correctamente.", Toast.LENGTH_LONG).show();
-            else
-                Toast.makeText(this, "Nombre de usuario ya registrado anteriormente.", Toast.LENGTH_LONG).show();
+            if (confirmPassword.equals(password)) {
+                boolean correctSignIn = ddbb.sigIn(email, name, surname, password);
+                if (correctSignIn) {
+                    Toast.makeText(this, "Usuario registrado correctamente.", Toast.LENGTH_LONG).show();
+                    currentUserEmail = email;   //si el usuario se registra correctamente mantiene la sesion iniciada
+                } else
+                    Toast.makeText(this, "Nombre de usuario ya registrado anteriormente.", Toast.LENGTH_LONG).show();
+            }else
+                Toast.makeText(this,"Confirme la contraseña correctamente.",Toast.LENGTH_LONG).show();
         }else {
             Toast.makeText(this, "Falta algun campo del registro por rellenar.", Toast.LENGTH_LONG).show();
         }
@@ -69,8 +78,6 @@ public class SignActivity extends AppCompatActivity {
     private boolean comprobarCampos(String email, String password, String confirmPassword, String name, String surname) {
         if (email.isEmpty() || password.isEmpty() || confirmPassword.isEmpty() || name.isEmpty() || surname.isEmpty())
             return false;
-        if (confirmPassword.equals(password))
-            return true;
         return false;
     }
 }

@@ -17,10 +17,15 @@ import com.example.database.R;
 import java.util.Random;
 
 public class Game extends AppCompatActivity {
+    //Usuario que está jugando y su emai
+    private User currentUser;
+    private String currentUserEmail;
+    //Base de datos de nuestros usuarios, necesaria para actualizar las puntuaciones
+    private UsersDataBase ddbb;
     //showValue es el textview correspondiente a la puntuación que me va a ir variando en función de los clicks dados al círculo
     TextView showValue;
     // el counter es el contador de los clicks dados al círculo necesarios para contar la puntuación
-    public int counter =0;
+    public int counter;
     //necesitamos unbooleano pressed para saber si se ha presionado en una partida el círculo ya que,
     //en caso de que si, no cuente como puntuación múltiples clicks sobre el mismo círculo del mismo nivel, sería ilógico
     public boolean pressed=false;
@@ -29,6 +34,19 @@ public class Game extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
+        //inicializamos la BBDD
+        ddbb = new UsersDataBase(this);
+        //Tomamos el email del usuario logeado que nos manda el menú
+        currentUserEmail = getIntent().getStringExtra("userEmail");
+        //En caso de haber iniciado sesion iniciamos la puntuacion del juego a la score del usuario y sino a 0
+        if(currentUserEmail==null){
+            counter=0;
+            currentUser = null;
+        }else{
+            currentUser = ddbb.getUser(currentUserEmail);
+            counter = currentUser.getScore();
+        }
+
         //innicializamos pressed a false
         pressed=false;
         //coloca el círculo con id: button12 en posiciones aleatorias
@@ -56,6 +74,11 @@ public class Game extends AppCompatActivity {
     //botón volver a inicio
     public void goMain(View view){
         Intent main = new Intent(this, MainActivity.class);
+        //Cuando salimos del juego y es un usuario loggeado tenemos que actualiar su score
+        if(currentUser!=null){
+            ddbb.updateScore(currentUser.getEmail(),counter);
+        }
+        main.putExtra("userEmail",this.currentUserEmail);
         startActivity(main);
         counter=0;
         showValue.setText(Integer.toString(counter));

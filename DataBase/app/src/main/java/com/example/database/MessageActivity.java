@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MessageActivity extends AppCompatActivity {
 
+    private String currentUserEmail;
+
     private EditText messageText;
     private MessagesDataBase ddbb;
     private ProgressDialog progress;
@@ -24,6 +26,7 @@ public class MessageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        currentUserEmail = getIntent().getStringExtra("userEmail");
         ddbb = new MessagesDataBase(this);
         messageText = (EditText) findViewById(R.id.txtMessage);
         setContentView(R.layout.activity_message);
@@ -32,6 +35,7 @@ public class MessageActivity extends AppCompatActivity {
 
     public void goBack(View view) {
         Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("userEmail",this.currentUserEmail);
         startActivity(i);
     }
 
