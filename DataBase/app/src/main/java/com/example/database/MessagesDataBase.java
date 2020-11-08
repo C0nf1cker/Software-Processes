@@ -6,6 +6,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+/**
+ * Clase para representar la base de datos de los mensajes con tematica COVID usada por nuestra App.
+ */
 public class MessagesDataBase extends SQLiteOpenHelper {
 
     //Nuestra BBDD
@@ -15,6 +18,7 @@ public class MessagesDataBase extends SQLiteOpenHelper {
     sus claves primarias son un entero que se autoincrementa a medida que se insertan en la tabla*/
     private static final String MESSAGES_TABLE_CREATE
             = "CREATE TABLE messages(_id INTEGER PRIMARY KEY AUTOINCREMENT, text TEXT)";
+
     //Nombre de la BBDD de mensajes
     private static final String DB_MESSAGES_NAME = "messages.sqlite";
     //Version de la BBDD

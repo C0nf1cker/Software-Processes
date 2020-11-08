@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.database">
 
     <application
@@ -12,6 +13,9 @@
         <activity android:name=".RankingActivity"></activity>
         <activity android:name=".MessageActivity" />
         <activity android:name=".SignActivity" />
+        <activity android:name=".Game" />
+        <activity android:name=".Settings" />
+        <activity android:name=".Profile"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

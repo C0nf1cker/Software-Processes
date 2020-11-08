@@ -21,4 +21,13 @@
     <string name="atras">Atras</string>
     <string name="ranking_de_jugadores">Ranking de Jugadores</string>
     <string name="ranking">RANKING</string>
+    <string name="buttonPlay">Jugar</string>
+    <string name="buttonProfile">Perfil</string>
+    <string name="buttonSettings">Ajustes</string>
+    <string name="buttonExit">Salir</string>
+    <string name="buttonNext">Saltar</string>
+    <string name="button_return">volver a inicio</string>
+    <string name="button_play_again">volver a jugar</string>
+    <string name="score_text">Puntuación:</string>
+
 </resources>

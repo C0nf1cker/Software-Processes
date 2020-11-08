@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,10 +11,20 @@ import android.widget.ListView;
 
 import java.util.LinkedList;
 
+/**
+ * Clase para la pantalla del ranking de usuarios registrados
+ */
 public class RankingActivity extends AppCompatActivity {
+
+    //Email del usuario loggeado actualmente
+    private String currentUserEmail;
+    //BBDD de usuarios necesaria para mostrar sus nombres y puntuaciones
     private UsersDataBase BBDD;
+    //Elemento del layout para mostrar la lista de usuarios
     private ListView dynamic;
+    //Array usado para ordenar a los usuarios por sus puntuaciones
     private LinkedList<User> users = new LinkedList<>();
+    //Array que guarda la información mostrada en cada fila del ranking
     private LinkedList<String> infoToShow = new LinkedList<>();
 
 
@@ -24,45 +33,45 @@ public class RankingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ranking);
 
+        currentUserEmail = getIntent().getStringExtra("userEmail");
 
         //Inicializamos nuestra base de datos
         BBDD = new UsersDataBase(this);
 
         //Inicializamos elementos de la interfaz
         dynamic = (ListView) findViewById(R.id.rankList);
-        rank();
-
+        //Mostramos el ranking
+        showRanking();
     }
 
-    //Metodo para volver al menu principal
+    /**
+     * Metodo para volver al menu principal
+     *
+     * @param view
+     */
     public void goBack(View view) {
         Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("userEmail", this.currentUserEmail);
+        startActivity(i);
     }
 
 
     /**
-     * Metodo para cargar la info de los jugadores y mostrarla en la tabla
+     * Metodo para cargar la informacion de los jugadores y mostrarla en la tabla
      */
-    public void rank() {
-        Cursor c = BBDD.getAllUsers();
+    public void showRanking() {
         User userAux;
         String name, surname, email, password;
         int score;
-        if (c.moveToFirst()) {
-            do {
-                name = c.getString(c.getColumnIndex("name"));
-                surname = c.getString(c.getColumnIndex("surname"));
-                email = c.getString(c.getColumnIndex("_email"));
-                password = c.getString(c.getColumnIndex("password"));
-                score = c.getInt(c.getColumnIndex("score"));
-                userAux = new User(email, name, surname, password, score);
-                users.add(userAux);
-            } while (c.moveToNext());
-        }
+        //Cogemos todos los usuarios de nuestra base de datos
+        users = BBDD.getAllUsers();
+        //Ordenamos los usuarios
         sort(users);
+        //Guardamos la informacion que queremos de cada uno
         for (User u : users) {
-            infoToShow.add(u.getName() + "\tScore:" + u.getScore());
+            infoToShow.add(u.getName() + "\t\t\tScore:" + u.getScore());
         }
+        //Linkamos el array de la informacion a la tabla mostrada en pantalla
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, infoToShow);
         dynamic.setAdapter(adapter);
     }
@@ -91,9 +100,9 @@ public class RankingActivity extends AppCompatActivity {
         User aux;
 
         while (i < j) {                          // mientras no se crucen las búsquedas
-            while (A.get(i).getScore() <= pivote.getScore() && i < j)
+            while (A.get(i).getScore() >= pivote.getScore() && i < j)
                 i++; // busca elemento mayor que pivote
-            while (A.get(j).getScore() > pivote.getScore())
+            while (A.get(j).getScore() < pivote.getScore())
                 j--;           // busca elemento menor que pivote
             if (i < j) {                        // si no se han cruzado
                 aux = A.get(i);                      // los intercambia

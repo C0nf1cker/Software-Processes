@@ -1,8 +1,15 @@
 package com.example.database;
 
+/**
+ * Clase que representa los mensajes con tematica COVID de la app
+ * para guardarlos y mostrar al usuario.
+ */
 public class COVID_Message {
+
     private int id;
     private String text;
+
+
 
     public COVID_Message(int id, String text) {
         this.id = id;
