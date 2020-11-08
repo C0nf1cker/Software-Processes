@@ -1,6 +1,10 @@
 package com.example.database;
 
+/**
+ * Clase que representa los datos de los usuarios que van a usar la App
+ */
 public class User {
+
     private String email, name, surname, password;
     private int score;
 

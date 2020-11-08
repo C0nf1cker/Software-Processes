@@ -13,29 +13,42 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ * Activity en el que se guardan y muestran los mensajes con temática COVID
+ */
 public class MessageActivity extends AppCompatActivity {
 
+    //Email del usuario loggeado actualmente
     private String currentUserEmail;
-
+    //Campo donde se mostrara el mensaje COVID en la pantalla
     private EditText messageText;
     private MessagesDataBase ddbb;
     private ProgressDialog progress;
     Button SaltarPantalla;
     private static String TAG = "MainActivity ";
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Recibimos el email del usuario loggeado desde el menu y lo guardamos
         currentUserEmail = getIntent().getStringExtra("userEmail");
+        //Inicializamos la bbdd y linkamos con el layout del activity
         ddbb = new MessagesDataBase(this);
-        messageText = (EditText) findViewById(R.id.txtMessage);
         setContentView(R.layout.activity_message);
+        messageText = (EditText) findViewById(R.id.txtMessage);
         SaltarPantalla = (Button) findViewById(R.id.buttonNext);
     }
 
+    /**
+     * Acción de volver al menu principal
+     *
+     * @param view
+     */
     public void goBack(View view) {
         Intent i = new Intent(this, MainActivity.class);
-        i.putExtra("userEmail",this.currentUserEmail);
+        i.putExtra("userEmail", this.currentUserEmail);
         startActivity(i);
     }
 
@@ -63,6 +76,7 @@ public class MessageActivity extends AppCompatActivity {
     public void saveMessage(View view) {
         String messageText = this.messageText.getText().toString();
         if (!messageText.isEmpty()) {
+            //Si se ha rellenado el mensaje se guarda en la bbdd
             boolean correctInsert = ddbb.insert(messageText);
             if (correctInsert)
                 Toast.makeText(this, "Mensaje insertado con exito.", Toast.LENGTH_LONG).show();
@@ -72,9 +86,13 @@ public class MessageActivity extends AppCompatActivity {
             Toast.makeText(this, "Rellene antes el campo de texto por favor.", Toast.LENGTH_LONG).show();
     }
 
-    //Carga la barra y al finalizar te lleva al juego
-    public void cargar(View view){
-        progress=new ProgressDialog(this);
+    /**
+     * Carga la barra y al finalizar te lleva al juego
+     *
+     * @param view
+     */
+    public void cargar(View view) {
+        progress = new ProgressDialog(this);
         progress.setMessage("Cargando pantalla....");
         progress.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         progress.setProgress(0);
@@ -86,13 +104,12 @@ public class MessageActivity extends AppCompatActivity {
             public void run() {
                 int jumpTime = 0;
 
-                while(jumpTime < totalProgressTime) {
+                while (jumpTime < totalProgressTime) {
                     try {
                         jumpTime += 5;
                         progress.setProgress(jumpTime);
                         sleep(200);
-                    }
-                    catch (InterruptedException e) {
+                    } catch (InterruptedException e) {
                         Log.e(TAG, e.getMessage());
                     }
                 }
@@ -101,7 +118,6 @@ public class MessageActivity extends AppCompatActivity {
         t.start();
         Intent main = new Intent(this, Game.class);
         startActivity(main);
-
     }
 
 }

@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 
 public class Settings extends AppCompatActivity {
+
+    //Email del usuario loggeado actualmente
     private String currentUserEmail;
 
     @Override
@@ -15,9 +17,15 @@ public class Settings extends AppCompatActivity {
         currentUserEmail = getIntent().getStringExtra("userEmail");
         setContentView(R.layout.activity_settings);
     }
-    public void goMain(View view){
+
+    /**
+     * Accion de volver al menu principal
+     *
+     * @param view
+     */
+    public void goMain(View view) {
         Intent main = new Intent(this, MainActivity.class);
-        main.putExtra("userEmail",this.currentUserEmail);
+        main.putExtra("userEmail", this.currentUserEmail);
         startActivity(main);
     }
 }
