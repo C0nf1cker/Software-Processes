@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
      * @param view
      */
     public void goBack(View view) {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, MainMenu.class);
         //En caso de habernos logeado comunicamos al menu principal el email del usuario logeado
         i.putExtra("userEmail", this.currentUserEmail);
         startActivity(i);
