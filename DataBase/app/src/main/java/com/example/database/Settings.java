@@ -24,7 +24,7 @@ public class Settings extends AppCompatActivity {
      * @param view
      */
     public void goMain(View view) {
-        Intent main = new Intent(this, MainActivity.class);
+        Intent main = new Intent(this, MainMenu.class);
         main.putExtra("userEmail", this.currentUserEmail);
         startActivity(main);
     }

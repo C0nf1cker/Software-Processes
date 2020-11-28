@@ -3,7 +3,6 @@ package com.example.database;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -50,7 +49,7 @@ public class RankingActivity extends AppCompatActivity {
      * @param view
      */
     public void goBack(View view) {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, MainMenu.class);
         i.putExtra("userEmail", this.currentUserEmail);
         startActivity(i);
     }

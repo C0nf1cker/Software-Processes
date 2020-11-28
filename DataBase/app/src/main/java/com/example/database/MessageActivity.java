@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 /**
  * Activity en el que se guardan y muestran los mensajes con temática COVID
  */
@@ -47,7 +45,7 @@ public class MessageActivity extends AppCompatActivity {
      * @param view
      */
     public void goBack(View view) {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, MainMenu.class);
         i.putExtra("userEmail", this.currentUserEmail);
         startActivity(i);
     }

@@ -2,7 +2,6 @@ package com.example.database;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -11,8 +10,6 @@ import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.database.R;
 
 import java.util.Random;
 
@@ -75,7 +72,7 @@ public class Game extends AppCompatActivity {
      * @param view
      */
     public void goMain(View view) {
-        Intent main = new Intent(this, MainActivity.class);
+        Intent main = new Intent(this, MainMenu.class);
         //Cuando salimos del juego y es un usuario loggeado tenemos que actualiar su puntuación
         if (currentUserEmail != null) {
             currentUser = ddbb.getUser(currentUserEmail);

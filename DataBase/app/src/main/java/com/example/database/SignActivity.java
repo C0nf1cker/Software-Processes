@@ -43,7 +43,7 @@ public class SignActivity extends AppCompatActivity {
      * @param view
      */
     public void goBack(View view) {
-        Intent i = new Intent(this, MainActivity.class);
+        Intent i = new Intent(this, MainMenu.class);
         i.putExtra("userEmail", this.currentUserEmail);
         startActivity(i);
     }
