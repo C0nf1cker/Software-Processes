@@ -73,7 +73,7 @@ public class MainMenu extends AppCompatActivity {
      * @param view
      */
     public void Play(View view) {
-        Intent play = new Intent(this, Game.class);
+        Intent play = new Intent(this, PruebasTimer.class);
         //Mandamos el email del usuario loggeado para que actualice su puntuación mientras juega
         play.putExtra("userEmail", this.currentUserEmail);
         startActivity(play);
