@@ -15,6 +15,16 @@
         tools:layout_editor_absoluteX="41dp">
 
         <Button
+            android:id="@+id/button7"
+            android:layout_width="412dp"
+            android:layout_height="655dp"
+            android:layout_x="0dp"
+            android:layout_y="0dp"
+            android:onClick="clickOutObjetive"
+            android:text="Button"
+            app:backgroundTint="@android:color/transparent" />
+
+        <Button
             android:id="@+id/button12"
             android:layout_width="64dp"
             android:layout_height="62dp"
@@ -22,7 +32,7 @@
             android:layout_marginLeft="173dp"
             android:layout_marginTop="172dp"
             android:background="@drawable/round_button"
-            android:onClick="victoryNotification_increaseScore"
+            android:onClick="clickOnObjetive"
             android:rotation="0"
             android:rotationX="0"
             android:rotationY="0"
@@ -39,19 +49,10 @@
             android:layout_marginLeft="155dp"
             android:layout_marginEnd="163dp"
             android:layout_marginRight="163dp"
-            android:layout_x="26dp"
-            android:layout_y="668dp"
+            android:layout_x="127dp"
+            android:layout_y="667dp"
             android:onClick="goMain"
             android:text="@string/button_return" />
-
-        <Button
-            android:id="@+id/button16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_x="216dp"
-            android:layout_y="667dp"
-            android:onClick="playAgain"
-            android:text="@string/button_play_again" />
 
         <TextView
             android:id="@+id/counterValue"
@@ -68,6 +69,14 @@
             android:layout_x="254dp"
             android:layout_y="93dp"
             android:text="Puntuación:" />
+
+        <TextView
+            android:id="@+id/timerText"
+            android:layout_width="119dp"
+            android:layout_height="48dp"
+            android:layout_x="147dp"
+            android:layout_y="32dp"
+            android:textSize="48sp" />
 
     </AbsoluteLayout>
 
