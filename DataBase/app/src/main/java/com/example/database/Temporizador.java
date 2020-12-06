@@ -51,4 +51,8 @@ public class Temporizador {
     public void star(){
         timer.start();
     }
+
+    public boolean haAcabado() {
+        return this.timeRemining==0;
+    }
 }
