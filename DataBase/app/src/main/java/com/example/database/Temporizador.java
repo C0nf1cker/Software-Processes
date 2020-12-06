@@ -7,6 +7,7 @@ public class Temporizador {
     private CountDownTimer timer;
     private TextView timeText;
     private long timeRemining;
+    private boolean ended;
 
     public Temporizador(TextView timeText) {
         this.timeText = timeText;
@@ -24,6 +25,7 @@ public class Temporizador {
             @Override
             public void onFinish() {
                 timeText.setText("Perdiste :(");
+                ended = true;
             }
         };
         return countDownTimer;
@@ -50,9 +52,10 @@ public class Temporizador {
 
     public void star(){
         timer.start();
+        ended = false;
     }
 
-    public boolean haAcabado() {
-        return this.timeRemining==0;
+    public boolean hasEnd() {
+        return ended;
     }
 }

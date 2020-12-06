@@ -30,5 +30,7 @@
     <string name="button_play_again">volver a jugar</string>
     <string name="score_text">Puntuación:</string>
     <string name="Start_Button">Empezar</string>
+    <string name="button">restOfTheScreen</string>
+    <string name="puntuaci_n">Puntuación:</string>
 
 </resources>
