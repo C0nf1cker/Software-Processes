@@ -115,6 +115,7 @@ public class MessageActivity extends AppCompatActivity {
         };
         t.start();
         Intent main = new Intent(this, Game.class);
+        main.putExtra("userEmail", this.currentUserEmail);
         startActivity(main);
     }
 

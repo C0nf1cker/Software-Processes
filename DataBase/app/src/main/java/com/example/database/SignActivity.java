@@ -68,7 +68,8 @@ public class SignActivity extends AppCompatActivity {
                 boolean correctSignIn = ddbb.sigIn(email, name, surname, password);
                 if (correctSignIn) {
                     Toast.makeText(this, "Usuario registrado correctamente.", Toast.LENGTH_LONG).show();
-                    currentUserEmail = email;   //si el usuario se registra correctamente mantiene la sesion iniciada
+                    currentUserEmail = email;   //si el usuario se registra correctamente mantiene la sesion iniciadaç
+                    goBack(view);
                 } else
                     Toast.makeText(this, "Nombre de usuario ya registrado anteriormente.", Toast.LENGTH_LONG).show();
             } else

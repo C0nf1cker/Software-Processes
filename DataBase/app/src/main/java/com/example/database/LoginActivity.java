@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             if (u != null) {//En caso de exito notificamos y editamos el email del usuario actual al del usuario loggeado
                 Toast.makeText(this, "Usuario loggeado.", Toast.LENGTH_LONG).show();
                 currentUserEmail = u.getEmail();
+                goBack(view);
             } else
                 Toast.makeText(this, "Contraseña o email incorrectos", Toast.LENGTH_LONG).show();
         } else

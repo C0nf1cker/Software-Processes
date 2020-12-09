@@ -2,12 +2,12 @@ package com.example.database;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.widget.AbsoluteLayout;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +33,8 @@ public class Game extends AppCompatActivity {
     public int counter;
     private TextView timeRemining;
 
+    private TextView recordText;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +43,21 @@ public class Game extends AppCompatActivity {
         //Linkamos el texto para la puntuación de la partida con su correspondiente en el layout
         showValue = (TextView) findViewById(R.id.counterValue);
         timeRemining = (TextView) findViewById(R.id.timerText);
+        recordText = (TextView) findViewById(R.id.recordText);
         //inicializamos la BBDD
         ddbb = new UsersDataBase(this);
         //Tomamos el email del usuario logeado que nos manda el menú
         currentUserEmail = getIntent().getStringExtra("userEmail");
-        //innicializamos pressed a false y counter a 0
+        //innicializamos counter a 0
         counter = 0;
         timer = new Temporizador(timeRemining);
-        //Esperar a que el usuario este listo?
-
+        //En caso de que haya un usuario loggeado mostramos su record por pantalla, en caso
+        //de ser nuevo o no estar loggeado se muestra 0
+        if(this.currentUserEmail!=null){
+            String usrRecord = String.valueOf(ddbb.getUser(currentUserEmail).getScore());
+            recordText.setText(usrRecord);
+        }else
+            recordText.setText("0");
         //Empezar el juego
         timer.star();
         colocarCirculo();
@@ -57,19 +65,24 @@ public class Game extends AppCompatActivity {
 
 
     public void colocarCirculo(){
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int width = metrics.widthPixels;
+
         //coloca el círculo con id: button12 en posiciones aleatorias
         Button button = (Button) findViewById(R.id.button12);
+
+        ConstraintSet set = new ConstraintSet();
         ConstraintLayout.LayoutParams absParams =
                 (ConstraintLayout.LayoutParams) button.getLayoutParams();
 
-        int width = findViewById(R.id.button7).getLayoutParams().width;
         int height = findViewById(R.id.button7).getLayoutParams().height;
 
 
         Random r = new Random();
 
-        absParams.horizontalBias = r.nextInt(width);
-        absParams.verticalBias = r.nextInt(height);
+        absParams.bottomMargin = r.nextInt(height)-button.getLayoutParams().width;
+        absParams.rightMargin = r.nextInt(width)-button.getLayoutParams().height;
         button.setLayoutParams(absParams);
     }
 
@@ -117,6 +130,11 @@ public class Game extends AppCompatActivity {
 
     public void playAgain(View view){
         updateScore();
+        if(this.currentUserEmail!=null){
+            String usrRecord = String.valueOf(ddbb.getUser(currentUserEmail).getScore());
+            recordText.setText(usrRecord);
+        }else
+            recordText.setText("0");
         timer.star();
         colocarCirculo();
         counter = 0;
