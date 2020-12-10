@@ -21,7 +21,11 @@ import java.util.Random;
  * Cada vez que se acierte se le suma 1 punto a la puntuación de la partida y una vez salgamos del
  * juego se añadira a la puntuación total del usuario si éste ha iniciado sesión anteriormente.
  */
-public class Game extends AppCompatActivity {
+public class Game extends AppCompatActivity  {
+
+    AbsoluteLayout parent;
+    Button b1;
+    int level;
 
     //Usuario que está jugando y su email
     private User currentUser;
@@ -42,6 +46,8 @@ public class Game extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego);
+        level=1;
+
         //Linkamos el texto para la puntuación de la partida con su correspondiente en el layout
         showValue = (TextView) findViewById(R.id.counterValue);
         //inicializamos la BBDD
@@ -53,20 +59,8 @@ public class Game extends AppCompatActivity {
         counter = 0;
         //coloca el círculo con id: button12 en posiciones aleatorias
         Button button = (Button) findViewById(R.id.button12);
-        AbsoluteLayout.LayoutParams absParams =
-                (AbsoluteLayout.LayoutParams) button.getLayoutParams();
+        showRandomPosition(button);
 
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        int width = displaymetrics.widthPixels - 200;
-        int height = displaymetrics.heightPixels - 500;
-
-
-        Random r = new Random();
-
-        absParams.x = r.nextInt(width);
-        absParams.y = r.nextInt(height);
-        button.setLayoutParams(absParams);
     }
 
     /**
@@ -115,6 +109,35 @@ public class Game extends AppCompatActivity {
         pressed = false;
         //coloca el círculo con id: button12 en posiciones aleatorias
         Button button = (Button) findViewById(R.id.button12);
+        showRandomPosition(button);
+        //necesario para mostrar la puntuación síncrona a tiempo real en la casilla textView counterValue
+        showValue = (TextView) findViewById(R.id.counterValue);
+    }
+
+/*
+    @Override
+    public void onClick(View v) {
+        String  str= v.getTag().toString();
+        if (str.equals("0")){
+            Toast.makeText(getApplicationContext(),"Click button0",Toast.LENGTH_SHORT).show();
+        }
+        else if (str.equals("1")){
+            Toast.makeText(getApplicationContext(),"Click button1",Toast.LENGTH_SHORT).show();
+        }
+        else if (str.equals("2")){
+            Toast.makeText(getApplicationContext(),"Click button2",Toast.LENGTH_SHORT).show();
+        }
+        else if (str.equals("3")){
+            Toast.makeText(getApplicationContext(),"Click button3",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"Click button4",Toast.LENGTH_SHORT).show();
+        }
+    }
+    */
+
+
+    public void showRandomPosition(Button button){
         AbsoluteLayout.LayoutParams absParams =
                 (AbsoluteLayout.LayoutParams) button.getLayoutParams();
 
@@ -129,8 +152,29 @@ public class Game extends AppCompatActivity {
         absParams.x = r.nextInt(width);
         absParams.y = r.nextInt(height);
         button.setLayoutParams(absParams);
-        //necesario para mostrar la puntuación síncrona a tiempo real en la casilla textView counterValue
+    }
+
+    public void nextLevel(View view){
         showValue = (TextView) findViewById(R.id.counterValue);
+        pressed = false;
+        Button button = (Button) findViewById(R.id.button12);
+        showRandomPosition(button);
+        level++;
+        String[]btn_name={"Button1","Button2","Button3","Button4","Button5"};
+        parent= (AbsoluteLayout) findViewById(R.id.l1_parent);
+        for (int i = 0;i<5;i++){
+            Button b1= new Button(Game.this);
+
+            b1.setId(i+1);
+            b1.setText(btn_name[i]);
+            b1.setTag(i);
+            /*parent.addView(b1);
+           */
+            showRandomPosition(b1);
+           // b1.setOnClickListener(Game.this);
+
+        }
+
     }
 
 }
