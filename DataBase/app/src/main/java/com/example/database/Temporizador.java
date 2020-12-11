@@ -66,5 +66,6 @@ public class Temporizador {
         this.timer = crearTimer(30000);
         this.timeRemining = 30000;
         this.timer.start();
+        ended = false;
     }
 }

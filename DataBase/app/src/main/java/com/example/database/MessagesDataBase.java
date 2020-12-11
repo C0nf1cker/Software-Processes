@@ -48,7 +48,7 @@ public class MessagesDataBase extends SQLiteOpenHelper {
         this.insert("Manten la distancia de seguridad de 2 metros.");
         this.insert("Lavate siempre las manos con gel.");
         this.insert("Usa guantes cuando vayas a la compra.");
-        this.insert("No salgas de casa si no es necesario");
+        this.insert("No salgas de casa si no es necesario.");
         this.insert("Evita aglomeraciones.");
     }
 

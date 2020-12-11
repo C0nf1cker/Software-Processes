@@ -4,14 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -34,6 +37,7 @@ public class Game extends AppCompatActivity {
     public int counter;
     private TextView timeRemining;
     private TextView recordText;
+    private ArrayList<Button> noContagiados= new ArrayList<>();
 
 
     @Override
@@ -65,6 +69,10 @@ public class Game extends AppCompatActivity {
 
 
     public void colocarContagiado(){
+        colocar(findViewById(R.id.button12));
+    }
+
+    private void colocar(Button button) {
         //Sacar los valores en los que se va a mover el elemento contagiado, que son el ancho de la
         //pantalla y el alto de la pantalla de juego
         DisplayMetrics metrics = new DisplayMetrics();
@@ -72,7 +80,6 @@ public class Game extends AppCompatActivity {
         int width = metrics.widthPixels;
         int height = findViewById(R.id.button7).getLayoutParams().height;
 
-        Button button = (Button) findViewById(R.id.button12);
         //Obtener una forma de tocar la ubicacion del elemento contagiado
         ConstraintLayout.LayoutParams constraintParams =
                 (ConstraintLayout.LayoutParams) button.getLayoutParams();
@@ -138,9 +145,39 @@ public class Game extends AppCompatActivity {
             counter++;
             timer.acertar();
             showValue.setText(Integer.toString(counter));
+            colocarNoContagiados(counter,this);
             colocarContagiado();
         }else
             Toast.makeText(this, "El tiempo se ha acabado pulsa jugar otra vez para volver a jugar!", Toast.LENGTH_LONG).show();
+    }
+
+    private void colocarNoContagiados(int level, Context context) {
+        if(!this.noContagiados.isEmpty()){
+            for (Button b:
+                 noContagiados) {
+                ViewGroup layout = (ViewGroup) b.getParent();
+                layout.removeView(b);
+            }
+        }
+        noContagiados = new ArrayList<>();
+        int dificultad = generateCharactersByDifficulty(level);
+        for(int i=0; i<dificultad;i++){
+            Button b = new Button(context);
+            b.setId(i+1);
+            b.setTag(i);
+            b.setOnClickListener(this::clickOutObjetive);
+            ConstraintLayout parent = (ConstraintLayout) findViewById(R.id.l1_parent).getParent();
+            parent.addView(b);
+            colocar(b);
+            noContagiados.add(b);
+        }
+    }
+
+    private int generateCharactersByDifficulty(int level) {
+        Random r = new Random();
+        int characterNumber = r.nextInt(level)+level;
+        //Faltaria refinar un poco la generacion de personajes en funcion de la dificultad
+        return characterNumber;
     }
 
     public void clickOutObjetive(View view){
