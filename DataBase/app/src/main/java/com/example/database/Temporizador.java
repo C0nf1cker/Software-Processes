@@ -12,6 +12,7 @@ public class Temporizador {
     public Temporizador(TextView timeText) {
         this.timeText = timeText;
         this.timer = crearTimer(30000);
+        this.timeRemining = 30000;
     }
 
     private CountDownTimer crearTimer(long time) {
@@ -53,9 +54,17 @@ public class Temporizador {
     public void star(){
         timer.start();
         ended = false;
+        this.timeRemining = 30000;
     }
 
     public boolean hasEnd() {
         return ended;
+    }
+
+
+    public void restart() {
+        this.timer = crearTimer(30000);
+        this.timeRemining = 30000;
+        this.timer.start();
     }
 }

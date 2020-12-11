@@ -19,6 +19,7 @@ import java.util.Random;
  * Cada vez que se acierte se le suma 1 punto a la puntuación de la partida y una vez salgamos del
  * juego se añadira a la puntuación total del usuario si éste ha iniciado sesión anteriormente.
  */
+
 public class Game extends AppCompatActivity {
     //Temporizador para llevar la cuenta del juego
     private Temporizador timer;
@@ -60,30 +61,54 @@ public class Game extends AppCompatActivity {
             recordText.setText("0");
         //Empezar el juego
         timer.star();
-        colocarCirculo();
+        colocarContagiado();
     }
 
 
-    public void colocarCirculo(){
+    public void colocarContagiado(){
+        //Sacar los valores en los que se va a mover el elemento contagiado, que son el ancho de la
+        //pantalla y el alto de la pantalla de juego
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int width = metrics.widthPixels;
-
-        //coloca el círculo con id: button12 en posiciones aleatorias
-        Button button = (Button) findViewById(R.id.button12);
-
-        ConstraintSet set = new ConstraintSet();
-        ConstraintLayout.LayoutParams absParams =
-                (ConstraintLayout.LayoutParams) button.getLayoutParams();
-
         int height = findViewById(R.id.button7).getLayoutParams().height;
 
+        Button button = (Button) findViewById(R.id.button12);
+        //Obtener una forma de tocar la ubicacion del elemento contagiado
+        ConstraintLayout.LayoutParams constraintParams =
+                (ConstraintLayout.LayoutParams) button.getLayoutParams();
 
         Random r = new Random();
 
-        absParams.bottomMargin = r.nextInt(height)-button.getLayoutParams().width;
-        absParams.rightMargin = r.nextInt(width)-button.getLayoutParams().height;
-        button.setLayoutParams(absParams);
+        int cuadrante = r.nextInt(3);
+        int bottomMargin, rightMargin, leftMargin, topMargin;
+        switch (cuadrante){
+            case 0:
+                bottomMargin = r.nextInt(height)-400;
+                rightMargin = r.nextInt(width)-400;
+                constraintParams.rightMargin=rightMargin <0 ? button.getLayoutParams().width : rightMargin;
+                constraintParams.bottomMargin=bottomMargin <0 ? button.getLayoutParams().height : bottomMargin;
+                break;
+            case 1:
+                leftMargin = r.nextInt(width)-400;
+                bottomMargin = r.nextInt(height)-400;
+                constraintParams.leftMargin=leftMargin <0 ? button.getLayoutParams().width : leftMargin;
+                constraintParams.bottomMargin=bottomMargin <0 ? button.getLayoutParams().height : bottomMargin;
+                break;
+            case 2:
+                topMargin = r.nextInt(height)-400;
+                rightMargin = r.nextInt(width)-400;
+                constraintParams.topMargin=topMargin <0 ? button.getLayoutParams().height : topMargin;
+                constraintParams.rightMargin=rightMargin <0 ? button.getLayoutParams().width : rightMargin;
+                break;
+            case 3:
+                topMargin = r.nextInt(height)-400;
+                leftMargin = r.nextInt(width)-400;
+                constraintParams.leftMargin=leftMargin <0 ? button.getLayoutParams().width : leftMargin;
+                constraintParams.topMargin=topMargin <0 ? button.getLayoutParams().height : topMargin;
+                break;
+        }
+        button.setLayoutParams(constraintParams);
     }
 
     /**
@@ -114,7 +139,7 @@ public class Game extends AppCompatActivity {
             counter++;
             timer.acertar();
             showValue.setText(Integer.toString(counter));
-            colocarCirculo();
+            colocarContagiado();
         }else
             Toast.makeText(this, "El tiempo se ha acabado pulsa jugar otra vez para volver a jugar!", Toast.LENGTH_LONG).show();
     }
@@ -123,7 +148,7 @@ public class Game extends AppCompatActivity {
         if (!timer.hasEnd()) {
             timer.fallar();
             showValue.setText(Integer.toString(counter));
-            colocarCirculo();
+            Toast.makeText(this, "Te has equivado, sigue intentandolo!", Toast.LENGTH_LONG).show();
         }else
             Toast.makeText(this, "El tiempo se ha acabado pulsa jugar otra vez para volver a jugar!", Toast.LENGTH_LONG).show();
     }
@@ -135,8 +160,9 @@ public class Game extends AppCompatActivity {
             recordText.setText(usrRecord);
         }else
             recordText.setText("0");
-        timer.star();
-        colocarCirculo();
+        timer.restart();
+        showValue.setText("0");
+        colocarContagiado();
         counter = 0;
     }
 
