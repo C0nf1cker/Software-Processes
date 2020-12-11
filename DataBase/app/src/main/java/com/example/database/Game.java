@@ -33,7 +33,6 @@ public class Game extends AppCompatActivity {
     // el counter es el contador de los clicks dados al círculo necesarios para contar la puntuación
     public int counter;
     private TextView timeRemining;
-
     private TextView recordText;
 
 

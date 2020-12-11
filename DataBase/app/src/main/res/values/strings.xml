@@ -32,5 +32,6 @@
     <string name="Start_Button">Empezar</string>
     <string name="button">restOfTheScreen</string>
     <string name="puntuaci_n">Puntuación:</string>
+    <string name="delete_acount">Eliminar Cuenta</string>
 
 </resources>

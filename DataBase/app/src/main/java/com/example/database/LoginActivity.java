@@ -77,4 +77,10 @@ public class LoginActivity extends AppCompatActivity {
             return false;
         return true;
     }
+
+    public void gosigIn(View view){
+        Intent i = new Intent(this, SignActivity.class);
+        i.putExtra("userEmail", this.currentUserEmail);
+        startActivity(i);
+    }
 }

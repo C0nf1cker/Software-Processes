@@ -151,4 +151,9 @@ public class UsersDataBase extends SQLiteOpenHelper {
         return toReturn;
     }
 
+    public boolean deleteUser(String userEmail) {
+        db.delete("users","_email=?",new String[]{userEmail});
+        Cursor c = db.rawQuery("SELECT _email, name, surname, password, score FROM users WHERE _email=?", new String[]{userEmail});
+        return !c.moveToFirst();
+    }
 }

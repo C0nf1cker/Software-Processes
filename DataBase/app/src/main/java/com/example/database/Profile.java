@@ -52,4 +52,21 @@ public class Profile extends AppCompatActivity {
         main.putExtra("userEmail", currentUserEmail);
         startActivity(main);
     }
+
+    public void deleteAcount(View view) {
+        if(currentUserEmail==null){
+            Toast.makeText(this,"Debe iniciar sesión previamente para poder borrar su perfil.", Toast.LENGTH_LONG).show();
+        }else{
+            if(!ddbb.deleteUser(currentUserEmail)){
+                Toast.makeText(this,"Error al borrar usuario.", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(this, "Ha borrado su cuenta con exito.", Toast.LENGTH_SHORT).show();
+                userName.setText("Nombre");
+                userSurname.setText("Apellidos");
+                userScore.setText("0");
+                currentUserEmail=null;
+            }
+        }
+    }
+
 }
