@@ -6,6 +6,15 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.Buffer;
+
 /**
  * Clase para representar la base de datos de los mensajes con tematica COVID usada por nuestra App.
  */
@@ -28,6 +37,19 @@ public class MessagesDataBase extends SQLiteOpenHelper {
     public MessagesDataBase(Context context) {
         super(context, DB_MESSAGES_NAME, null, DB_VERSION);
         db = this.getWritableDatabase();
+        if(getMessage()==null) {
+            inicializarBD();
+        }
+    }
+
+
+    private void inicializarBD() {
+        this.insert("Ponte la mascarilla.");
+        this.insert("Manten la distancia de seguridad de 2 metros.");
+        this.insert("Lavate siempre las manos con gel.");
+        this.insert("Usa guantes cuando vayas a la compra.");
+        this.insert("No salgas de casa si no es necesario");
+        this.insert("Evita aglomeraciones.");
     }
 
     //Creacion de la tabla
@@ -75,4 +97,27 @@ public class MessagesDataBase extends SQLiteOpenHelper {
         }
         return message;
     }
+
+
+
+
+    private void sacarDeFichero(){
+        File f = new File("./mensajes.txt");
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(
+                    "./mensajes.txt"));
+            String line = reader.readLine();
+            while (line != null) {
+                this.insert(line);
+                // read next line
+                line = reader.readLine();
+            }
+            reader.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

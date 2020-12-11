@@ -156,4 +156,14 @@ public class UsersDataBase extends SQLiteOpenHelper {
         Cursor c = db.rawQuery("SELECT _email, name, surname, password, score FROM users WHERE _email=?", new String[]{userEmail});
         return !c.moveToFirst();
     }
+
+    public void updateUser(User user, String lastKnownUserEmail) {
+        ContentValues cv = new ContentValues();
+        cv.put("_email", user.getEmail());
+        cv.put("name", user.getName());
+        cv.put("surname", user.getSurname());
+        cv.put("password", user.getPassword());
+        cv.put("score", user.getScore());
+        db.update("users", cv, "_email=?", new String[]{lastKnownUserEmail});
+    }
 }

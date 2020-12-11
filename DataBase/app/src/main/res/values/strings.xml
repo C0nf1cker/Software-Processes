@@ -33,5 +33,9 @@
     <string name="button">restOfTheScreen</string>
     <string name="puntuaci_n">Puntuación:</string>
     <string name="delete_acount">Eliminar Cuenta</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="editar_perfil">editar perfil</string>
+    <string name="save_changes">guardar cambios</string>
 
 </resources>

@@ -33,7 +33,7 @@ public class Profile extends AppCompatActivity {
         currentUserEmail = getIntent().getStringExtra("userEmail");
         //Si no se ha iniciado sesión se le notifica al usuario y no se muestra nada
         if (currentUserEmail == null) {
-            Toast.makeText(this, "Debe iniciar sesión previamente para poder acceder a su perfil", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Debe iniciar sesión previamente para poder acceder a su perfil", Toast.LENGTH_SHORT).show();
         } else {//sino se muestran sus datos por pantalla
             User currentUser = ddbb.getUser(currentUserEmail);
             userName.setText(currentUser.getName());
@@ -55,10 +55,10 @@ public class Profile extends AppCompatActivity {
 
     public void deleteAcount(View view) {
         if(currentUserEmail==null){
-            Toast.makeText(this,"Debe iniciar sesión previamente para poder borrar su perfil.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Debe iniciar sesión previamente para poder borrar su perfil.", Toast.LENGTH_SHORT).show();
         }else{
             if(!ddbb.deleteUser(currentUserEmail)){
-                Toast.makeText(this,"Error al borrar usuario.", Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"Error al borrar usuario.", Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(this, "Ha borrado su cuenta con exito.", Toast.LENGTH_SHORT).show();
                 userName.setText("Nombre");
@@ -67,6 +67,15 @@ public class Profile extends AppCompatActivity {
                 currentUserEmail=null;
             }
         }
+    }
+
+    public void goEditPorfile(View view){
+        if(currentUserEmail!=null) {
+            Intent editProfile = new Intent(this, EditProfile.class);
+            editProfile.putExtra("userEmail", currentUserEmail);
+            startActivity(editProfile);
+        }else
+            Toast.makeText(this,"Debe iniciar sesión previamente para poder editar su perfil.", Toast.LENGTH_SHORT).show();
     }
 
 }
