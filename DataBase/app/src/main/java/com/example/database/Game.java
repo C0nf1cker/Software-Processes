@@ -1,6 +1,7 @@
 package com.example.database;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -157,21 +158,23 @@ public class Game extends AppCompatActivity  {
     public void nextLevel(View view){
         showValue = (TextView) findViewById(R.id.counterValue);
         pressed = false;
-        Button button = (Button) findViewById(R.id.button12);
-        showRandomPosition(button);
+
         level++;
         String[]btn_name={"Button1","Button2","Button3","Button4","Button5"};
         parent= (AbsoluteLayout) findViewById(R.id.l1_parent);
         for (int i = 0;i<5;i++){
             Button b1= new Button(Game.this);
 
+
             b1.setId(i+1);
             b1.setText(btn_name[i]);
             b1.setTag(i);
-            /*parent.addView(b1);
-           */
+            parent.addView(b1);
+
             showRandomPosition(b1);
            // b1.setOnClickListener(Game.this);
+            Button button = (Button) findViewById(R.id.button12);
+            showRandomPosition(button);
 
         }
 

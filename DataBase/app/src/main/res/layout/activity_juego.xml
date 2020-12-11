@@ -13,7 +13,7 @@
         android:layout_height="631dp"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
+        tools:ignore="MissingConstraSimpleLayoutints,MissingConstraints"
         tools:layout_editor_absoluteX="4dp">
 
         <Button
