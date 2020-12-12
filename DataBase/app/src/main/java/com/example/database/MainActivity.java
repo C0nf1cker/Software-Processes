@@ -111,4 +111,11 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
+    public void Ayuda(View view) {
+        Intent ayuda = new Intent(this, Ayuda.class);
+        ayuda.putExtra("userEmail", this.currentUserEmail);
+        startActivity(ayuda);
+    }
+
+
 }
