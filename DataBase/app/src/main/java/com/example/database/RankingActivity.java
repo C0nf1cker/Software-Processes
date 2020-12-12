@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.LinkedList;
 
@@ -64,6 +65,10 @@ public class RankingActivity extends AppCompatActivity {
         int score;
         //Cogemos todos los usuarios de nuestra base de datos
         users = BBDD.getAllUsers();
+        if(users.isEmpty()){
+            Toast.makeText(this,"No hay usuarios registrados aun en la aplicacion",Toast.LENGTH_SHORT).show();
+            return ;
+        }
         //Ordenamos los usuarios
         sort(users);
         //Guardamos la informacion que queremos de cada uno

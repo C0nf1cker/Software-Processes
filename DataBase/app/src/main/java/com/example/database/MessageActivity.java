@@ -2,15 +2,9 @@ package com.example.database;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,9 +16,9 @@ public class MessageActivity extends AppCompatActivity {
     //Email del usuario loggeado actualmente
     private String currentUserEmail;
     //Campo donde se mostrara el mensaje COVID en la pantalla
-    private TextView messageText;
+    private TextView messageText, waitingTime;
+    private Temporizador timer;
     private MessagesDataBase ddbb;
-    Button SaltarPantalla;
     private static String TAG = "MainActivity ";
 
 
@@ -37,9 +31,10 @@ public class MessageActivity extends AppCompatActivity {
         ddbb = new MessagesDataBase(this);
         setContentView(R.layout.activity_message);
         messageText = (TextView) findViewById(R.id.txtMessage);
-        SaltarPantalla = (Button) findViewById(R.id.buttonNext);
+        waitingTime = (TextView) findViewById(R.id.txtWaitingTime);
         showMessage();
-
+        timer = new Temporizador(waitingTime,5000,"Cargando...");
+        timer.star();
         (new Handler()).postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -48,16 +43,6 @@ public class MessageActivity extends AppCompatActivity {
         }, 5000);
     }
 
-    /**
-     * Acción de volver al menu principal
-     *
-     * @param view
-     */
-    public void goBack(View view) {
-        Intent i = new Intent(this, MainMenu.class);
-        i.putExtra("userEmail", this.currentUserEmail);
-        startActivity(i);
-    }
 
     /**
      * Metodo para enseñar un mensaje temática COVID aleatorio llamando a la base de datos

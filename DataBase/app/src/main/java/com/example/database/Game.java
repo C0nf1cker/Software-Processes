@@ -54,7 +54,7 @@ public class Game extends AppCompatActivity {
         currentUserEmail = getIntent().getStringExtra("userEmail");
         //innicializamos counter a 0
         counter = 0;
-        timer = new Temporizador(timeRemining);
+        timer = new Temporizador(timeRemining,30000,"Perdiste :(");
         //En caso de que haya un usuario loggeado mostramos su record por pantalla, en caso
         //de ser nuevo o no estar loggeado se muestra 0
         if(this.currentUserEmail!=null){

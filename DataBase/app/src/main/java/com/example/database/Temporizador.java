@@ -8,24 +8,28 @@ public class Temporizador {
     private TextView timeText;
     private long timeRemining;
     private boolean ended;
+    private long limitTime;
+    private String finishMessage;
 
-    public Temporizador(TextView timeText) {
+    public Temporizador(TextView timeText,long limitTime,String finishMessage) {
         this.timeText = timeText;
-        this.timer = crearTimer(30000);
-        this.timeRemining = 30000;
+        this.timer = crearTimer(limitTime);
+        this.timeRemining = limitTime;
+        this.limitTime = limitTime;
+        this.finishMessage = finishMessage;
     }
 
     private CountDownTimer crearTimer(long time) {
         CountDownTimer countDownTimer = new CountDownTimer(time, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timeText.setText(millisUntilFinished/1000+"sg");
+                timeText.setText(millisUntilFinished/1000+" seg");
                 timeRemining = millisUntilFinished;
             }
 
             @Override
             public void onFinish() {
-                timeText.setText("Perdiste :(");
+                timeText.setText(finishMessage);
                 ended = true;
             }
         };
@@ -54,7 +58,7 @@ public class Temporizador {
     public void star(){
         timer.start();
         ended = false;
-        this.timeRemining = 30000;
+        this.timeRemining = limitTime;
     }
 
     public boolean hasEnd() {
@@ -63,8 +67,8 @@ public class Temporizador {
 
 
     public void restart() {
-        this.timer = crearTimer(30000);
-        this.timeRemining = 30000;
+        this.timer = crearTimer(limitTime);
+        this.timeRemining = limitTime;
         this.timer.start();
         ended = false;
     }

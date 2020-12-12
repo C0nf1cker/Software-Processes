@@ -157,13 +157,12 @@ public class UsersDataBase extends SQLiteOpenHelper {
         return !c.moveToFirst();
     }
 
-    public void updateUser(User user, String lastKnownUserEmail) {
+    public void updateUser(String fieldName,String value, String lastKnownUserEmail) {
         ContentValues cv = new ContentValues();
-        cv.put("_email", user.getEmail());
-        cv.put("name", user.getName());
-        cv.put("surname", user.getSurname());
-        cv.put("password", user.getPassword());
-        cv.put("score", user.getScore());
+        if(fieldName.equals("score"))
+            cv.put(fieldName,Integer.valueOf(value));
+        else
+            cv.put(fieldName,value);
         db.update("users", cv, "_email=?", new String[]{lastKnownUserEmail});
     }
 }

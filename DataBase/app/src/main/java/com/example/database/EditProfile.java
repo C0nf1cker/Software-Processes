@@ -42,10 +42,52 @@ public class EditProfile extends AppCompatActivity {
 
     public void saveChanges(View view){
         if(currentUserEmail!=null) {
-
-
+            if(checkPasswordFieldsArentEmpty()){
+                if(passwordTxt.getText().equals(confirmPasswordTxt.getText())) {
+                    dataBase.updateUser("password", passwordTxt.getText().toString(), currentUserEmail);
+                    if(!nameTxt.getText().toString().isEmpty())
+                        dataBase.updateUser("name",nameTxt.getText().toString(),currentUserEmail);
+                    if(!surnameTxt.getText().toString().isEmpty())
+                        dataBase.updateUser("surname", surnameTxt.getText().toString(),currentUserEmail);
+                    if(!emailTxt.getText().toString().isEmpty()){
+                        dataBase.updateUser("_email", emailTxt.getText().toString(), currentUserEmail);
+                        currentUserEmail = emailTxt.getText().toString();
+                    }
+                    Toast.makeText(this,"Cambios realizados correctamente.",Toast.LENGTH_SHORT).show();
+                    goMain(view);
+                }
+                else
+                    Toast.makeText(this,"Las contraseñas no coinciden.",Toast.LENGTH_SHORT).show();
+            }else {
+                if(checkOnePasswordFieldIsEmptyAndOtherNot()){
+                    Toast.makeText(this,"Las contraseñas no coinciden.",Toast.LENGTH_SHORT).show();
+                }else {
+                    if (!nameTxt.getText().toString().isEmpty())
+                        dataBase.updateUser("name", nameTxt.getText().toString(), currentUserEmail);
+                    if (!surnameTxt.getText().toString().isEmpty())
+                        dataBase.updateUser("surname", surnameTxt.getText().toString(), currentUserEmail);
+                    if (!emailTxt.getText().toString().isEmpty()) {
+                        dataBase.updateUser("_email", emailTxt.getText().toString(), currentUserEmail);
+                        currentUserEmail = emailTxt.getText().toString();
+                    }
+                    Toast.makeText(this, "Cambios realizados correctamente.", Toast.LENGTH_SHORT).show();
+                    goMain(view);
+                }
+            }
         }else
             Toast.makeText(this,"Tiene que haber iniciado sesion previamente.",Toast.LENGTH_SHORT).show();
+    }
+
+    private boolean checkOnePasswordFieldIsEmptyAndOtherNot() {
+        if(passwordTxt.getText().toString().isEmpty()&&!confirmPasswordTxt.getText().toString().isEmpty())
+            return true;
+        if(!passwordTxt.getText().toString().isEmpty()&&confirmPasswordTxt.getText().toString().isEmpty())
+            return true;
+        return false;
+    }
+
+    private boolean checkPasswordFieldsArentEmpty() {
+        return !passwordTxt.getText().toString().isEmpty()&&!confirmPasswordTxt.toString().isEmpty();
     }
 
     public void goMain(View view){

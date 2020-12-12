@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //Inicializacion de la bbdd y linkado de la parte logica y el layout del activity
         ddbb = new UsersDataBase(this);
+        currentUserEmail = getIntent().getStringExtra("userEmail");
         setContentView(R.layout.activity_login);
         etEmail = (EditText) findViewById(R.id.txtLoginEmail);
         etPassword = (EditText) findViewById(R.id.txtLoginPassword);
