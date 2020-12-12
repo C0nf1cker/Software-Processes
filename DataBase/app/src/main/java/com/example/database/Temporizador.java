@@ -20,7 +20,7 @@ public class Temporizador {
     }
 
     private CountDownTimer crearTimer(long time) {
-        CountDownTimer countDownTimer = new CountDownTimer(time, 1000) {
+        CountDownTimer countDownTimer = new CountDownTimer(time, 1) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timeText.setText(millisUntilFinished/1000+" seg");

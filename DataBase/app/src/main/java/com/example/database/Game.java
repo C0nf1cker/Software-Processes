@@ -2,15 +2,14 @@ package com.example.database;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 
-import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,58 +63,38 @@ public class Game extends AppCompatActivity {
             recordText.setText("0");
         //Empezar el juego
         timer.star();
-        colocarContagiado();
+    }
+
+    private void placeInfected() {
+        placeCharacter(findViewById(R.id.button12));
+    }
+
+    private void placeCharacter(Button button){
+        button.setX(randomX(button));
+        button.setY(randomY()+button.getHeight());
     }
 
 
-    public void colocarContagiado(){
-        colocar(findViewById(R.id.button12));
+    private int randomY() {
+        Random r = new Random();
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        int newY =  r.nextInt(metrics.heightPixels-1350)+500;
+        return newY;
     }
 
-    private void colocar(Button button) {
-        //Sacar los valores en los que se va a mover el elemento contagiado, que son el ancho de la
-        //pantalla y el alto de la pantalla de juego
+    private int randomX(Button button) {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int width = metrics.widthPixels;
-        int height = findViewById(R.id.button7).getLayoutParams().height;
-
-        //Obtener una forma de tocar la ubicacion del elemento contagiado
-        ConstraintLayout.LayoutParams constraintParams =
-                (ConstraintLayout.LayoutParams) button.getLayoutParams();
 
         Random r = new Random();
 
-        int cuadrante = r.nextInt(3);
-        int bottomMargin, rightMargin, leftMargin, topMargin;
-        switch (cuadrante){
-            case 0:
-                bottomMargin = r.nextInt(height)-400;
-                rightMargin = r.nextInt(width)-400;
-                constraintParams.rightMargin=rightMargin <0 ? button.getLayoutParams().width : rightMargin;
-                constraintParams.bottomMargin=bottomMargin <0 ? button.getLayoutParams().height : bottomMargin;
-                break;
-            case 1:
-                leftMargin = r.nextInt(width)-400;
-                bottomMargin = r.nextInt(height)-400;
-                constraintParams.leftMargin=leftMargin <0 ? button.getLayoutParams().width : leftMargin;
-                constraintParams.bottomMargin=bottomMargin <0 ? button.getLayoutParams().height : bottomMargin;
-                break;
-            case 2:
-                topMargin = r.nextInt(height)-400;
-                rightMargin = r.nextInt(width)-400;
-                constraintParams.topMargin=topMargin <0 ? button.getLayoutParams().height : topMargin;
-                constraintParams.rightMargin=rightMargin <0 ? button.getLayoutParams().width : rightMargin;
-                break;
-            case 3:
-                topMargin = r.nextInt(height)-400;
-                leftMargin = r.nextInt(width)-400;
-                constraintParams.leftMargin=leftMargin <0 ? button.getLayoutParams().width : leftMargin;
-                constraintParams.topMargin=topMargin <0 ? button.getLayoutParams().height : topMargin;
-                break;
-        }
-        button.setLayoutParams(constraintParams);
+        return r.nextInt(width-button.getWidth());
     }
+
 
     /**
      * Acción del botón volver a inicio
@@ -145,30 +124,26 @@ public class Game extends AppCompatActivity {
             counter++;
             timer.acertar();
             showValue.setText(Integer.toString(counter));
-            colocarNoContagiados(counter,this);
-            colocarContagiado();
+            placeInfected();
+            colocarNoContagiados(counter);
         }else
             Toast.makeText(this, "El tiempo se ha acabado pulsa jugar otra vez para volver a jugar!", Toast.LENGTH_LONG).show();
     }
 
-    private void colocarNoContagiados(int level, Context context) {
-        if(!this.noContagiados.isEmpty()){
-            for (Button b:
-                 noContagiados) {
-                ViewGroup layout = (ViewGroup) b.getParent();
-                layout.removeView(b);
-            }
-        }
+    private void colocarNoContagiados(int level) {
+        removeRestCharacters();
         noContagiados = new ArrayList<>();
         int dificultad = generateCharactersByDifficulty(level);
+        ConstraintLayout parent = findViewById(R.id.l1_parent);
         for(int i=0; i<dificultad;i++){
-            Button b = new Button(context);
+            Button b = new Button(Game.this);
             b.setId(i+1);
             b.setTag(i);
-            b.setOnClickListener(this::clickOutObjetive);
-            ConstraintLayout parent = (ConstraintLayout) findViewById(R.id.l1_parent).getParent();
+            b.setOnClickListener(this::clickOnWrongCharacter);
+            b.setWidth(10);
+            b.setHeight(10);
+            placeCharacter(b);
             parent.addView(b);
-            colocar(b);
             noContagiados.add(b);
         }
     }
@@ -189,6 +164,18 @@ public class Game extends AppCompatActivity {
             Toast.makeText(this, "El tiempo se ha acabado pulsa jugar otra vez para volver a jugar!", Toast.LENGTH_LONG).show();
     }
 
+    public void clickOnWrongCharacter(View view){
+        if (!timer.hasEnd()) {
+            timer.fallar();
+            showValue.setText(Integer.toString(counter));
+            Toast.makeText(this, "Te has equivado, sigue intentandolo!", Toast.LENGTH_LONG).show();
+            ConstraintLayout parent =findViewById(R.id.l1_parent);
+            parent.removeView(view);
+        }else
+            Toast.makeText(this, "El tiempo se ha acabado pulsa jugar otra vez para volver a jugar!", Toast.LENGTH_LONG).show();
+    }
+
+
     public void playAgain(View view){
         updateScore();
         if(this.currentUserEmail!=null){
@@ -198,8 +185,19 @@ public class Game extends AppCompatActivity {
             recordText.setText("0");
         timer.restart();
         showValue.setText("0");
-        colocarContagiado();
+        removeRestCharacters();
+        placeCharacter(findViewById(R.id.button12));
         counter = 0;
+    }
+
+    private void removeRestCharacters() {
+        if(!this.noContagiados.isEmpty()){
+            for (Button b:
+                    noContagiados) {
+                ConstraintLayout layout = findViewById(R.id.l1_parent);
+                layout.removeView(b);
+            }
+        }
     }
 
     private void updateScore(){
