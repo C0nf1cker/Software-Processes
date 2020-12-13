@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DataBase">
         <activity android:name=".EditProfile"></activity>
+        <activity android:name=".Ayuda"></activity>
         <activity android:name=".MainMenu" />
         <activity android:name=".RankingActivity" />
         <activity android:name=".MessageActivity" />

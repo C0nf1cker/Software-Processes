@@ -2,6 +2,7 @@ package com.example.database;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,17 +16,21 @@ public class Ayuda extends AppCompatActivity {
     private ImageView image;
     private ImageView image2;
     private TextView text;
+    private String currentUserEmail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ayuda);
+
+        currentUserEmail = getIntent().getStringExtra("userEmail");
 
         spinner= findViewById(R.id.spinner);
         image= findViewById(R.id.image);
         image2= findViewById(R.id.image2);
         text= findViewById(R.id.text);
 
-        String[] options ={"seleccionar", "Registrarse", "Iniciar sesión", "Jugar", "Perfil", "Mensajes", "Ranking", "Ajustes", "Salir"};
+        String[] options ={"seleccionar", "Registrarse", "Iniciar sesión", "Jugar", "Perfil", "Ranking", "Ajustes", "Salir"};
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item,options);
 
         spinner.setAdapter(adapter);
@@ -60,12 +65,9 @@ public class Ayuda extends AppCompatActivity {
                         text.setText(" ");
                         break;
                     case 5:
-                        image.setImageResource(R.drawable.mens1);
-                        image2.setImageResource(R.drawable.mens2);
-                        text.setText("Para mostrar mensajes COVID es preciso guardarlos anteriormente." +
-                                "Con tan solo insertarlo en la casilla de texto y darle a guardar se indicará" +
-                                "'mensaje insertado con exito', a continuación al pulsar mostrar se porporcionará un mensaje anterior" +
-                                "constado con anterioridad.");
+                        image.setImageResource(R.drawable.background);
+                        image2.setImageResource(R.drawable.background);
+                        text.setText(" ");
                         break;
                     case 6:
                         image.setImageResource(R.drawable.background);
@@ -73,11 +75,6 @@ public class Ayuda extends AppCompatActivity {
                         text.setText(" ");
                         break;
                     case 7:
-                        image.setImageResource(R.drawable.background);
-                        image2.setImageResource(R.drawable.background);
-                        text.setText(" ");
-                        break;
-                    case 8:
                         image.setImageResource(R.drawable.background);
                         image2.setImageResource(R.drawable.background);
                         text.setText(" ");
@@ -93,5 +90,12 @@ public class Ayuda extends AppCompatActivity {
 
 
         });
+    }
+
+    public void goBack(View view){
+        Intent main = new Intent(this, MainMenu.class);
+        //Devolvemos al menú el email del usuario logeado para que mantenga la sesión iniciada
+        main.putExtra("userEmail", this.currentUserEmail);
+        startActivity(main);
     }
 }

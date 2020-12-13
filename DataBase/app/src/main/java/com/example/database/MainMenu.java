@@ -76,4 +76,10 @@ public class MainMenu extends AppCompatActivity {
         startActivity(settings);
     }
 
+    public void goHelp(View view){
+        Intent help = new Intent(this, Ayuda.class);
+        help.putExtra("userEmail",this.currentUserEmail);
+        startActivity(help);
+    }
+
 }
