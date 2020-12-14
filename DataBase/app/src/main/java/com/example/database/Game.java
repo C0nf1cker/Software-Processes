@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -36,7 +35,8 @@ public class Game extends AppCompatActivity {
     public int counter;
     private TextView timeRemining;
     private TextView recordText;
-    private ArrayList<Button> noContagiados= new ArrayList<>();
+    private ArrayList<ImageButton> noContagiados= new ArrayList<>();
+    private ArrayList<Integer> notInfectedSource, infectedSource;
 
 
     @Override
@@ -61,6 +61,13 @@ public class Game extends AppCompatActivity {
             recordText.setText(usrRecord);
         }else
             recordText.setText("0");
+        notInfectedSource=new ArrayList<>();
+        infectedSource=new ArrayList<>();
+        infectedSource.add(R.drawable.malo1);
+        infectedSource.add(R.drawable.malo2);
+        notInfectedSource.add(R.drawable.bueno1);
+        notInfectedSource.add(R.drawable.bueno2);
+        notInfectedSource.add(R.drawable.bueno3);
         //Empezar el juego
         timer.star();
     }
@@ -69,7 +76,7 @@ public class Game extends AppCompatActivity {
         placeCharacter(findViewById(R.id.button12));
     }
 
-    private void placeCharacter(Button button){
+    private void placeCharacter(ImageButton button){
         button.setX(randomX(button));
         button.setY(randomY()+button.getHeight());
     }
@@ -85,7 +92,7 @@ public class Game extends AppCompatActivity {
         return newY;
     }
 
-    private int randomX(Button button) {
+    private int randomX(ImageButton button) {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         int width = metrics.widthPixels;
@@ -136,16 +143,25 @@ public class Game extends AppCompatActivity {
         int dificultad = generateCharactersByDifficulty(level);
         ConstraintLayout parent = findViewById(R.id.l1_parent);
         for(int i=0; i<dificultad;i++){
-            Button b = new Button(Game.this);
+            ImageButton b = new ImageButton(Game.this);
             b.setId(i+1);
             b.setTag(i);
             b.setOnClickListener(this::clickOnWrongCharacter);
-            b.setWidth(10);
-            b.setHeight(10);
+            b.setBackgroundResource(randomNotInfectedImage());
             placeCharacter(b);
             parent.addView(b);
             noContagiados.add(b);
         }
+    }
+
+    private int randomNotInfectedImage() {
+        Random r = new Random();
+        return notInfectedSource.get(r.nextInt(notInfectedSource.size()-1));
+    }
+
+    private int randomInfectedImage() {
+        Random r = new Random();
+        return infectedSource.get(r.nextInt(infectedSource.size()-1));
     }
 
     private int generateCharactersByDifficulty(int level) {
@@ -186,13 +202,14 @@ public class Game extends AppCompatActivity {
         timer.restart();
         showValue.setText("0");
         removeRestCharacters();
+        findViewById(R.id.button12).setBackgroundResource(randomInfectedImage());
         placeCharacter(findViewById(R.id.button12));
         counter = 0;
     }
 
     private void removeRestCharacters() {
         if(!this.noContagiados.isEmpty()){
-            for (Button b:
+            for (ImageButton b:
                     noContagiados) {
                 ConstraintLayout layout = findViewById(R.id.l1_parent);
                 layout.removeView(b);
