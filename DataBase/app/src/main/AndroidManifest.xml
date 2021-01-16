@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.database">
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,11 +11,19 @@
         android:theme="@style/Theme.DataBase">
         <activity android:name=".MessageActivity"></activity>
         <activity android:name=".SignActivity" />
+        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".Ayuda"></activity>
+        <activity android:name=".MainMenu" />
+        <activity android:name=".RankingActivity" />
+        <activity android:name=".MessageActivity" />
+        <activity android:name=".SignActivity" />
+        <activity android:name=".Game" />
+        <activity android:name=".Settings" />
+        <activity android:name=".Profile" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

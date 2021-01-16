@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">DataBase</string>
+    <string name="buttonSign">Registrarse</string>
+    <string name="buttonLogin">Iniciar Sesion</string>
+    <string name="buttonMessage">Mensajes COVID</string>
+    <string name="buttonGoBack1">Volver</string>
+    <string name="buttonGoBack2">Volver</string>
+    <string name="buttonGoBack3">Volver</string>
+    <string name="txtMessage">Aqui se mostrara su mensaje</string>
+    <string name="buttonShow">Mostrar</string>
+    <string name="txtName">Nombre</string>
+    <string name="txtSurname">Apellidos</string>
+    <string name="txtEmail">Correo electronico</string>
+    <string name="txtPassword">Contraseña</string>
+    <string name="txtConfirmPassword">Confirmar constraseña</string>
+    <string name="buttonDoSign">Registrarse</string>
+    <string name="buttonDoLogin">Iniciar sesion</string>
+    <string name="txtLoginEmail">Correo electronico</string>
+    <string name="txtLoginPassword">Contraseña</string>
+    <string name="guardar">Guardar</string>
+    <string name="atras">Atras</string>
+    <string name="ranking_de_jugadores">Ranking de Jugadores</string>
+    <string name="ranking">RANKING</string>
+    <string name="buttonPlay">Jugar</string>
+    <string name="buttonProfile">Perfil</string>
+    <string name="buttonSettings">Ajustes</string>
+    <string name="buttonExit">Salir</string>
+    <string name="buttonNext">Saltar</string>
+    <string name="button_return">volver a inicio</string>
+    <string name="button_play_again">volver a jugar</string>
+    <string name="score_text">Puntuación:</string>
+
+</resources>

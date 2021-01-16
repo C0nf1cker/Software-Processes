@@ -4,41 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainMenu">
 
     <Button
-        android:id="@+id/buttonSign"
+        android:id="@+id/buttonProfile"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
-        android:onClick="sign"
-        android:text="@string/buttonSign"
+        android:layout_marginTop="44dp"
+        android:onClick="Profile"
+        android:text="@string/buttonProfile"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/buttonLogin"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:onClick="login"
-        android:text="@string/buttonLogin"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonMessage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSign" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonMessage" />
 
     <Button
         android:id="@+id/buttonMessage"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
+        android:layout_marginTop="260dp"
         android:onClick="message"
-        android:text="@string/buttonMessage"
+        android:text="@string/buttonPlay"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonSettings" />
+
+    <Button
+        android:id="@+id/buttonSettings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:onClick="Settings"
+        android:text="@string/buttonSettings"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/helpButton"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:layout_marginBottom="44dp"
+        android:onClick="ranking"
+        android:text="@string/ranking"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonProfile"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/helpButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:onClick="goHelp"
+        android:text="@string/ayuda"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+  
 </androidx.constraintlayout.widget.ConstraintLayout>
