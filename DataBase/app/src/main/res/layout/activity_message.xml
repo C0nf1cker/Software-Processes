@@ -8,11 +8,22 @@
     android:id="@+id/l1_parent">
 
 
+    <ImageView
+        android:layout_width="608dp"
+        android:layout_height="807dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/start_background" />
+
     <TextView
         android:id="@+id/txtMessage"
-        android:layout_width="259dp"
+        android:layout_width="365dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="124dp"
+        android:gravity="center"
+        android:textColor="@color/white"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -23,12 +34,26 @@
         android:id="@+id/txtWaitingTime"
         android:layout_width="181dp"
         android:layout_height="133dp"
+        android:gravity="center"
+        android:textColor="@color/white"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtMessage"
-        app:layout_constraintVertical_bias="0.305" />
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.003" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:gravity="center"
+        android:text="Espere:"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtMessage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

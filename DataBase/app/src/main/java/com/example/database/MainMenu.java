@@ -65,21 +65,17 @@ public class MainMenu extends AppCompatActivity {
         }
     }
 
-    /**
-     * Accion para ir a la pantalla de ajustes
-     *
-     * @param view
-     */
-    public void Settings(View view) {
-        Intent settings = new Intent(this, Settings.class);
-        settings.putExtra("userEmail", this.currentUserEmail);
-        startActivity(settings);
-    }
 
     public void goHelp(View view){
         Intent help = new Intent(this, Ayuda.class);
         help.putExtra("userEmail",this.currentUserEmail);
         startActivity(help);
+    }
+
+    public void restrictions(View view){
+        Intent restrictions = new Intent(this, Restrictions.class);
+        restrictions.putExtra("userEmail",this.currentUserEmail);
+        startActivity(restrictions);
     }
 
 }
