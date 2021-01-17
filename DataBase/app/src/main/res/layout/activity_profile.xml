@@ -106,6 +106,7 @@
         app:layout_constraintTop_toBottomOf="@+id/userSurname" />
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     <ImageButton
         android:id="@+id/imageButton3"
         android:layout_width="79dp"
@@ -120,6 +121,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/return_icon" />
 =======
+=======
+>>>>>>> 74338aeb480c49ea9e2bc4e709694f95c04b671f
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
@@ -132,6 +135,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.8" />
+<<<<<<< HEAD
+>>>>>>> 74338aeb480c49ea9e2bc4e709694f95c04b671f
+=======
 >>>>>>> 74338aeb480c49ea9e2bc4e709694f95c04b671f
 
 </androidx.constraintlayout.widget.ConstraintLayout>

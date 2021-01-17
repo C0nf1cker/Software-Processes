@@ -84,6 +84,10 @@ public class Profile extends AppCompatActivity {
         goMain(view);
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 74338aeb480c49ea9e2bc4e709694f95c04b671f
 =======
 
 >>>>>>> 74338aeb480c49ea9e2bc4e709694f95c04b671f
