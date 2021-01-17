@@ -1,8 +1,0 @@
-Datos de la APK
-Password: equipo9
-Name: Equipo 9
-Organizational Unit: Equipo 9
-Organization: Equipo 9
-City: Madrid
-Province: Madrid
-Country Code: 28933 

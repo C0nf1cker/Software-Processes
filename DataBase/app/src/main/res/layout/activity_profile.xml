@@ -7,13 +7,22 @@
     android:background="#FAF8F8"
     tools:context=".Profile">
 
+    <ImageView
+        android:layout_width="561dp"
+        android:layout_height="833dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/start_background" />
+
     <TextView
         android:id="@+id/userSurname"
         android:layout_width="wrap_content"
         android:layout_height="42dp"
         android:layout_marginTop="16dp"
         android:text="@string/apellidos"
-        android:textColor="#000000"
+        android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,61 +32,61 @@
         android:id="@+id/button4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="68dp"
-        android:onClick="goMain"
-        android:text="@string/button_return"
+        android:layout_marginBottom="108dp"
+        android:onClick="logOut"
+        android:text="@string/cerrar_sesion"
+        app:backgroundTint="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginBottom="56dp"
-        android:onClick="deleteAcount"
-        android:text="@string/delete_acount"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userScore"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/button8"
         android:layout_width="155dp"
         android:layout_height="49dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
-        android:layout_marginBottom="56dp"
         android:onClick="goEditPorfile"
         android:text="@string/editar_perfil"
+        app:backgroundTint="@android:color/holo_blue_dark"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.805"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/button10"
         app:layout_constraintTop_toBottomOf="@+id/userScore"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.88" />
+
+    <Button
+        android:id="@+id/button10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:onClick="deleteAcount"
+        android:text="@string/delete_acount"
+        app:backgroundTint="@android:color/holo_blue_dark"
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userScore"
+        app:layout_constraintVertical_bias="0.88" />
 
     <TextView
         android:id="@+id/userName"
         android:layout_width="wrap_content"
         android:layout_height="42dp"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="56dp"
         android:text="@string/nombre"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
 
     <TextView
         android:id="@+id/userScore"
         android:layout_width="114dp"
         android:layout_height="81dp"
         android:layout_marginTop="40dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="48sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView3"
@@ -89,11 +98,46 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="56dp"
         android:text="@string/score_text"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.167"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userSurname" />
+
+<<<<<<< HEAD
+<<<<<<< HEAD
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="79dp"
+        android:layout_height="75dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@android:color/holo_blue_dark"
+        android:onClick="goMain"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/return_icon" />
+=======
+=======
+>>>>>>> 74338aeb480c49ea9e2bc4e709694f95c04b671f
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="logOut"
+        android:text="Cerrar Sesion"
+        app:layout_constraintBottom_toTopOf="@+id/userName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.945"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.8" />
+<<<<<<< HEAD
+>>>>>>> 74338aeb480c49ea9e2bc4e709694f95c04b671f
+=======
+>>>>>>> 74338aeb480c49ea9e2bc4e709694f95c04b671f
 
 </androidx.constraintlayout.widget.ConstraintLayout>

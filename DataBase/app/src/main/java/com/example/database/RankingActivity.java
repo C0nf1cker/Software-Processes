@@ -76,7 +76,7 @@ public class RankingActivity extends AppCompatActivity {
             infoToShow.add(u.getName() + "\t\t\tScore:" + u.getScore());
         }
         //Linkamos el array de la informacion a la tabla mostrada en pantalla
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, infoToShow);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.ranking_style, infoToShow);
         dynamic.setAdapter(adapter);
     }
 

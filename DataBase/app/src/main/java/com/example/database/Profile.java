@@ -78,4 +78,17 @@ public class Profile extends AppCompatActivity {
             Toast.makeText(this,"Debe iniciar sesión previamente para poder editar su perfil.", Toast.LENGTH_SHORT).show();
     }
 
+    public void logOut(View view){
+        currentUserEmail= null;
+        Toast.makeText(this, "Has cerrado sesion correctamente.", Toast.LENGTH_SHORT).show();
+        goMain(view);
+    }
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 74338aeb480c49ea9e2bc4e709694f95c04b671f
+=======
+
+>>>>>>> 74338aeb480c49ea9e2bc4e709694f95c04b671f
 }

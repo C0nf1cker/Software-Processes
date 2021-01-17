@@ -8,6 +8,16 @@
     android:id="@+id/l1_parent">
 
 
+    <ImageView
+        android:layout_width="808dp"
+        android:layout_height="942dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.443"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/game_background" />
+
     <TextView
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
@@ -56,7 +66,6 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
@@ -96,6 +105,7 @@
         android:id="@+id/button12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#00FFFFFF"
         android:contentDescription="TODO"
         android:onClick="clickOnObjetive"
         app:layout_constraintBottom_toTopOf="@+id/button2"
